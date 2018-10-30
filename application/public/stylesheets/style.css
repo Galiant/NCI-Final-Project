@@ -1,2 +1,7 @@
 body {
   background: #bada55; }
+
+.card {
+  margin-top: 1rem; }
+  .card h5 {
+    padding-bottom: 1rem; }

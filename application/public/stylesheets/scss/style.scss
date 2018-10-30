@@ -3,3 +3,11 @@ $primary: #bada55;
 body {
   background: $primary;
 }
+
+.card {
+  margin-top: 1rem;
+  
+  h5 {
+    padding-bottom: 1rem;
+  }
+}
