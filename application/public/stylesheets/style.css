@@ -1,8 +1,7 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  background: #bada55; }
 
-a {
-  color: #00B7FF;
-}
+.card {
+  margin-bottom: 1.5rem !important; }
+  .card h5 {
+    padding-bottom: 1rem; }
