@@ -11,8 +11,11 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
-// connect to MongoDB
+// connect to MongoDB with mongoose
 mongoose.connect('mongodb://user:AbcD1234@ds129342.mlab.com:29342/bookboutique');
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup
 app.engine('.hbs', expressHbs({ defaultLayout: 'layout', extname: '.hbs' }));
