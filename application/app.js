@@ -12,7 +12,9 @@ var indexRouter = require('./routes/index');
 var app = express();
 
 // connect to MongoDB with mongoose
-mongoose.connect('mongodb://user:AbcD1234@ds129342.mlab.com:29342/bookboutique');
+mongoose.connect('mongodb://user:AbcD1234@ds129342.mlab.com:29342/bookboutique', { useNewUrlParser: true })
+  .then(() => console.log('MongoDB Connected...'))
+  .catch(err => console.log(err));
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
