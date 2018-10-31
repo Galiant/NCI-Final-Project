@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// create book schema & model
 var bookSchema = new Schema({
   cover: { type: String, required: true },
   title: { type: String, required: true },
