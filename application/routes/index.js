@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+
+// load book model
 const Book = require('../models/book');
 
 /* GET home page. */
@@ -49,14 +51,28 @@ router.post('/shop/all', (req, res) => {
       title: req.body.title,
       author: req.body.author,
       publisher: req.body.publisher,
-      bookdescription: req.body.bookdescription,
+      description: req.body.bookdescription,
       category: req.body.category,
       year: req.body.year,
       price: req.body.price
     })
   }
   else {
-    res.send('Form successful passed!')
+    const newUser = {
+      cover: req.body.cover,
+      title: req.body.title,
+      author: req.body.author,
+      publisher: req.body.publisher,
+      description: req.body.bookdescription,
+      category: req.body.category,
+      year: req.body.year,
+      price: req.body.price
+    }
+    new Book(newUser)
+      .save()
+      .then(book => {
+        res.redirect('/all')
+      })
   }
 });
 

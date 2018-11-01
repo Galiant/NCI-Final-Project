@@ -10,7 +10,7 @@ const bookSchema = new Schema({
   description: { type: String, required: true },
   category: { type: String, required: true },
   year: { type: Number, required: true },
-  price: { type: Number, required: true },
+  price: { type: Number, required: true }
 });
 
 // export model
