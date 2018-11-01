@@ -9,6 +9,17 @@ router.get('/', (req, res, next) => {
   res.render('shop/index', { title: 'The Book Boutique' });
 });
 
+/* GET allBooks page. */
+router.get('/all', (req, res) => {
+  Book.find({})
+    .sort({ title: 'ascending' })
+    .then(books => {
+      res.render('shop/all', {
+        books: books
+      });
+    })
+});
+
 /* GET add book */
 router.get('/manage/add', (req, res) => {
   res.render('manage/add');
