@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var Book = require('../models/book');
+const express = require('express');
+const router = express.Router();
+const Book = require('../models/book');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -14,7 +14,50 @@ router.get('/manage/add', (req, res) => {
 
 /* POST add book */
 router.post('/shop/all', (req, res) => {
-  res.send('ok');
+  // server side form validation for add book
+  let errors = [];
+  if (!req.body.cover) {
+    errors.push({ text: 'Please add a cover!' });
+  }
+  if (!req.body.title) {
+    errors.push({ text: 'Please add a title!' });
+  }
+  if (!req.body.author) {
+    errors.push({ text: 'Please add a author!' });
+  }
+  if (!req.body.publisher) {
+    errors.push({ text: 'Please add a publisher!' });
+  }
+  if (!req.body.bookdescription) {
+    errors.push({ text: 'Please add a description!' });
+  }
+  if (!req.body.category) {
+    errors.push({ text: 'Please add a category!' });
+  }
+  if (!req.body.year) {
+    errors.push({ text: 'Please add a year!' });
+  }
+  if (!req.body.price) {
+    errors.push({ text: 'Please add a price!' });
+  }
+
+  // check for error length. If it is length greather than zero we have a error
+  if (errors.length > 0) {
+    res.render('manage/add', {
+      errors: errors,
+      cover: req.body.cover,
+      title: req.body.title,
+      author: req.body.author,
+      publisher: req.body.publisher,
+      bookdescription: req.body.bookdescription,
+      category: req.body.category,
+      year: req.body.year,
+      price: req.body.price
+    })
+  }
+  else {
+    res.send('Form successful passed!')
+  }
 });
 
 module.exports = router;

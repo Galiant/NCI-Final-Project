@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 // create book schema & model
-var bookSchema = new Schema({
+const bookSchema = new Schema({
   cover: { type: String, required: true },
   title: { type: String, required: true },
   author: { type: String, required: true },

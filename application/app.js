@@ -1,22 +1,22 @@
-var createError = require('http-errors');
-var express = require('express'); // call express to be used by the application
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser'); // allow application to manipulate data in application (create, delete, update)
-var logger = require('morgan');
-var expressHbs = require('express-handlebars');
-var mongoose = require('mongoose');
+const createError = require('http-errors');
+const express = require('express'); // call express to be used by the application
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser'); // allow application to manipulate data in application (create, delete, update)
+const logger = require('morgan');
+const expressHbs = require('express-handlebars');
+const mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 
-var app = express();
+const app = express();
 
 // connect to MongoDB with mongoose
 mongoose.connect('mongodb://user:AbcD1234@ds129342.mlab.com:29342/bookboutique', { useNewUrlParser: true })
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 mongoose.Promise = global.Promise;
-var db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup
