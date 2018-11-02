@@ -11,14 +11,14 @@
               <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-success">Details</button>
               </div>
-              <big class="text-muted">€ {{price}}</big>
+              <big class="text-muted">&euro;{{price}}</big>
             </div>
           </div>
         </div>
       </div>
+      {{else}}
+        <p>No Listed Books</p>
+      {{/each}}
     </div>
   </div>
 </div>
-{{else}}
-  <p>No Listed Books</p>
-{{/each}}

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// load book model
+/* load book model */
 const Book = require('../models/book');
 
 /* GET home page. */
@@ -25,9 +25,14 @@ router.get('/manage/add', (req, res) => {
   res.render('manage/add');
 });
 
-/* POST add book */
+/* UPDATE book - edit database data based on button press and form */
+router.get('/manage/edit/:id', (req, res) => {
+  res.render('manage/edit');
+});
+
+/* POST add book - add data to database based on button press */
 router.post('/shop/all', (req, res) => {
-  // server side form validation for add book
+  // server side form validation for add book. Code used from https://www.safaribooksonline.com/videos/node-js-express-and/9781789535952/9781789535952-video4_4
   let errors = [];
   if (!req.body.cover) {
     errors.push({ text: 'Please add a cover!' });
