@@ -27,7 +27,14 @@ router.get('/manage/add', (req, res) => {
 
 /* UPDATE book - edit database data based on button press and form */
 router.get('/manage/edit/:id', (req, res) => {
-  res.render('manage/edit');
+  Book.findOne({
+      _id: req.params.id
+    })
+    .then(book => {
+      res.render('manage/edit', {
+        book: book
+      });
+    });
 });
 
 /* POST add book - add data to database based on button press */
