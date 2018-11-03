@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const express = require('express'); // call express to be used by the application
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const methodOverride = require('method-override'); // // allow application to execute put request
 const bodyParser = require('body-parser'); // allow application to manipulate data in application (create, delete, update)
 const logger = require('morgan');
 const expressHbs = require('express-handlebars');
@@ -33,6 +34,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// method override middleware
+app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
 

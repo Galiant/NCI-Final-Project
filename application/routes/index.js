@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-/* load book model */
+/* Load book model */
 const Book = require('../models/book');
 
 /* GET home page. */
@@ -23,18 +23,6 @@ router.get('/all', (req, res) => {
 /* GET add book */
 router.get('/manage/add', (req, res) => {
   res.render('manage/add');
-});
-
-/* UPDATE book - edit database data based on button press and form */
-router.get('/manage/edit/:id', (req, res) => {
-  Book.findOne({
-      _id: req.params.id
-    })
-    .then(book => {
-      res.render('manage/edit', {
-        book: book
-      });
-    });
 });
 
 /* POST add book - add data to database based on button press */
@@ -97,6 +85,42 @@ router.post('/shop/all', (req, res) => {
         res.redirect('/all')
       })
   }
+});
+
+/* Edit book - edit database data based on button press and form */
+router.get('/manage/edit/:id', (req, res) => {
+  Book.findOne({
+      _id: req.params.id
+    })
+    .then(book => {
+      res.render('manage/edit', {
+        book: book
+      });
+    });
+});
+
+
+/* Update book - update database data based on button press and form */
+router.put('/all/:id', (req, res) => {
+  Book.findOne({
+      _id: req.params.id
+    })
+    .then(book => {
+      //new values
+      book.cover = req.body.cover;
+      book.title = req.body.title;
+      book.author = req.body.author;
+      book.publisher = req.body.publisher;
+      book.description = req.body.bookdescription;
+      book.category = req.body.category;
+      book.year = req.body.year;
+      book.price = req.body.price;
+
+      book.save()
+        .then(book => {
+          res.redirect('/all');
+        })
+    });
 });
 
 module.exports = router;
