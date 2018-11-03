@@ -123,4 +123,12 @@ router.put('/all/:id', (req, res) => {
     });
 });
 
+/* Delete book - delete database data based on button press */
+router.delete('/all/:id', (req, res) => {
+  Book.remove({ _id: req.params.id })
+    .then(() => {
+      res.redirect('/all');
+    })
+});
+
 module.exports = router;

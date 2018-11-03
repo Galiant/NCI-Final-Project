@@ -2,8 +2,8 @@
   <div class="container">
     <div class="row">
     {{#each books}}
-      <div class="col-md-2">
-        <div class="card mb-2 shadow-sm">
+      <div class="col-md-3">
+        <div class="card mb-3 shadow-sm">
           <img src="{{cover}}" class="card-img-top img-fluid" alt="Elevation" style="width: 100%; display: block;">
           <div class="card-body">
             <h6 class="card-text text-center">{{title}}</h6>
@@ -11,6 +11,10 @@
               <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-success">Details</button>
                 <a href="/manage/edit/{{id}}"><button type="button" class="btn btn-sm btn-success">Edit</button></a>
+                <form method="post" action="/all/{{id}}?_method=DELETE">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
               </div>
               <big class="text-muted">&euro;{{price}}</big>
             </div>
