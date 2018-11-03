@@ -2,7 +2,9 @@ const createError = require('http-errors');
 const express = require('express'); // call express to be used by the application
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const methodOverride = require('method-override'); // // allow application to execute put request
+const methodOverride = require('method-override'); // // allow application to execute put and delete request
+const flash = require('connect-flash'); // allow application to show flash message
+const session = require('express-session');
 const bodyParser = require('body-parser'); // allow application to manipulate data in application (create, delete, update)
 const logger = require('morgan');
 const expressHbs = require('express-handlebars');
@@ -37,6 +39,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // method override middleware
 app.use(methodOverride('_method'));
+
+// express session middleware
+app.use(session({
+  secret: 'thebookboutique',
+  resave: true,
+  saveUninitialized: true
+}));
+
+app.use(flash());
+
+// Global variables for messages
+app.use(function(req, res, next) {
+  res.locals.success_message = req.flash('success_message');
+  res.locals.error_message = req.flash('error_message');
+  res.locals.error = req.flash('error');
+  next();
+})
 
 app.use('/', indexRouter);
 
