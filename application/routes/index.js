@@ -82,6 +82,7 @@ router.post('/shop/all', (req, res) => {
     new Book(newUser)
       .save()
       .then(book => {
+        req.flash('success_message', 'Book successfuly added!');
         res.redirect('/all')
       })
   }
@@ -118,6 +119,7 @@ router.put('/all/:id', (req, res) => {
 
       book.save()
         .then(book => {
+          req.flash('success_message', 'Book successfuly updated!');
           res.redirect('/all');
         })
     });
@@ -127,6 +129,7 @@ router.put('/all/:id', (req, res) => {
 router.delete('/all/:id', (req, res) => {
   Book.remove({ _id: req.params.id })
     .then(() => {
+      req.flash('success_message', 'Book successfuly deleted!');
       res.redirect('/all');
     })
 });
