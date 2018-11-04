@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
 });
 
 /* GET allBooks page. */
-router.get('/all', (req, res) => {
+router.get('/all', (req, res, next) => {
   Book.find({})
     .sort({ title: 'ascending' })
     .then(books => {
@@ -21,12 +21,12 @@ router.get('/all', (req, res) => {
 });
 
 /* GET add book */
-router.get('/manage/add', (req, res) => {
+router.get('/manage/add', (req, res, next) => {
   res.render('manage/add');
 });
 
 /* POST add book - add data to database based on button press */
-router.post('/shop/all', (req, res) => {
+router.post('/shop/all', (req, res, next) => {
   // server side form validation for add book. Code used from https://www.safaribooksonline.com/videos/node-js-express-and/9781789535952/9781789535952-video4_4
   let errors = [];
   if (!req.body.cover) {
@@ -89,7 +89,7 @@ router.post('/shop/all', (req, res) => {
 });
 
 /* Edit book - edit database data based on button press and form */
-router.get('/manage/edit/:id', (req, res) => {
+router.get('/manage/edit/:id', (req, res, next) => {
   Book.findOne({
       _id: req.params.id
     })
@@ -102,7 +102,7 @@ router.get('/manage/edit/:id', (req, res) => {
 
 
 /* Update book - update database data based on button press and form */
-router.put('/all/:id', (req, res) => {
+router.put('/all/:id', (req, res, next) => {
   Book.findOne({
       _id: req.params.id
     })
@@ -126,7 +126,7 @@ router.put('/all/:id', (req, res) => {
 });
 
 /* Delete book - delete database data based on button press */
-router.delete('/all/:id', (req, res) => {
+router.delete('/all/:id', (req, res, next) => {
   Book.remove({ _id: req.params.id })
     .then(() => {
       req.flash('success_message', 'Book successfuly deleted!');
