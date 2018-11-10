@@ -10,7 +10,8 @@ const logger = require('morgan');
 const expressHbs = require('express-handlebars');
 const mongoose = require('mongoose');
 
-const indexRouter = require('./routes/index');
+const routes = require('./routes/index');
+const users = require('./routes/user');
 
 const app = express();
 
@@ -57,7 +58,8 @@ app.use(function(req, res, next) {
   next();
 })
 
-app.use('/', indexRouter);
+app.use('/', routes);
+app.use('/user', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

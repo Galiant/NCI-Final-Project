@@ -134,14 +134,4 @@ router.delete('/all/:id', (req, res, next) => {
     })
 });
 
-/* GET register page. */
-router.get('/user/register', (req, res, next) => {
-  res.render('user/register');
-});
-
-/* GET login page. */
-router.get('/user/login', (req, res, next) => {
-  res.render('user/login');
-});
-
 module.exports = router;
