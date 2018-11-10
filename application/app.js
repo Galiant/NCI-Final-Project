@@ -56,7 +56,7 @@ app.use(function(req, res, next) {
   res.locals.error_message = req.flash('error_message');
   res.locals.error = req.flash('error');
   next();
-})
+});
 
 app.use('/', routes);
 app.use('/user', users);
