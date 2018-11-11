@@ -36,35 +36,43 @@ router.post('/register', (req, res, next) => {
     });
   }
   else {
-    const newUser = new User({
-      username: req.body.username,
-      password: req.body.password,
-      confirmpassword: req.body.confirmpassword,
-      email: req.body.email,
-      address: req.body.address,
-      secondaddress: req.body.secondaddress,
-      city: req.body.city,
-      state: req.body.state,
-      zip: req.body.zip
-    });
-
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash((newUser.password, newUser.confirmpassword), salt, (err, hash) => {
-        if (err) throw err;
-        newUser.password = hash;
-        newUser.confirmpassword = hash;
-        newUser.save()
-          .then(user => {
-            req.flash('success_message', 'You are now registered and can login.');
-            res.redirect('/users/login');
-          })
-          .catch(err => {
-            console.log(err);
-            return;
+    User.findOne({ email: req.body.email })
+      .then(user => {
+        if (user) {
+          req.flash('error_message', 'Email address already registered!');
+          res.redirect('/user/register');
+        }
+        else {
+          const newUser = new User({
+            username: req.body.username,
+            password: req.body.password,
+            confirmpassword: req.body.confirmpassword,
+            email: req.body.email,
+            address: req.body.address,
+            secondaddress: req.body.secondaddress,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip
           });
-      });
 
-    });
+          bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash((newUser.password, newUser.confirmpassword), salt, (err, hash) => {
+              if (err) throw err;
+              newUser.password = hash;
+              newUser.confirmpassword = hash;
+              newUser.save()
+                .then(user => {
+                  req.flash('success_message', 'You are now registered and can login.');
+                  res.redirect('/user/login');
+                })
+                .catch(err => {
+                  console.log(err);
+                  return;
+                });
+            });
+          });
+        }
+      });
   }
 });
 
