@@ -9,6 +9,7 @@ const bodyParser = require('body-parser'); // allow application to manipulate da
 const logger = require('morgan');
 const expressHbs = require('express-handlebars');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 const routes = require('./routes/index');
 const users = require('./routes/user');
