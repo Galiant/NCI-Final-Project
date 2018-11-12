@@ -11,6 +11,12 @@ module.exports = (passport) => {
       usernameField: 'email'
     },
     (email, password, done) => {
-      console.log(email);
+      User.findOne({
+        email: email
+      }).then(user => {
+        if (!user) {
+          return done(null, false, { message: 'No user found' });
+        }
+      })
     }));
-}
+};
