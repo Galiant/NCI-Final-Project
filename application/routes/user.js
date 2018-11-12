@@ -24,10 +24,9 @@ router.post('/register', (req, res, next) => {
   if (errors.length > 0) {
     res.render('user/register', {
       errors: errors,
-      username: req.body.username,
+      email: req.body.email,
       password: req.body.password,
       confirmpassword: req.body.confirmpassword,
-      email: req.body.email,
       address: req.body.address,
       secondaddress: req.body.secondaddress,
       city: req.body.city,
@@ -44,10 +43,9 @@ router.post('/register', (req, res, next) => {
         }
         else {
           const newUser = new User({
-            username: req.body.username,
+            email: req.body.email,
             password: req.body.password,
             confirmpassword: req.body.confirmpassword,
-            email: req.body.email,
             address: req.body.address,
             secondaddress: req.body.secondaddress,
             city: req.body.city,
