@@ -3,7 +3,7 @@
     <div class="card card-body">
       Image go here
       <h4 class="mb-3 text-center">Login</h4>
-      <form action="/login" method="post">
+      <form action="/user/login" method="post">
         <div class="form-group">
           <label for="email">Email address</label>
           <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" value="{{email}}" required>
@@ -12,6 +12,7 @@
           <label for="password">Password</label>
           <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
         </div>
+        <button type="submit" class="btn btn-success">Submit</button>
       </form>
     </div>
   </div>

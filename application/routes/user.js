@@ -10,7 +10,7 @@ router.get('/register', (req, res, next) => {
   res.render('user/register');
 });
 
-/* POST register form. */
+/* POST register page */
 router.post('/register', (req, res, next) => {
   let errors = [];
   if (req.body.password != req.body.confirmpassword) {
@@ -77,6 +77,20 @@ router.post('/register', (req, res, next) => {
 /* GET login page. */
 router.get('/login', (req, res, next) => {
   res.render('user/login');
+});
+
+/* POST login page. */
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/user/profile',
+    failureRedirect: '/user/login',
+    failureFlash: true
+  })(req, res, next);
+});
+
+/* GET user profile page */
+router.get('/user/profile', (req, res, next) => {
+  res.render('user/profile');
 });
 
 module.exports = router;

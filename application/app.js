@@ -8,11 +8,14 @@ const session = require('express-session');
 const bodyParser = require('body-parser'); // allow application to manipulate data in application (create, delete, update)
 const logger = require('morgan');
 const expressHbs = require('express-handlebars');
+const passport = require('passport'); // allow application to authenticate users
 const mongoose = require('mongoose');
-const passport = require('passport');
 
 const routes = require('./routes/index');
 const users = require('./routes/user');
+
+// passport config
+require('./config/passport')(passport);
 
 const app = express();
 
