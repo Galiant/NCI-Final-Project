@@ -18,7 +18,6 @@ module.exports = (passport) => {
         if (!user) {
           return done(null, false, { message: 'No user found with this email address!' });
         }
-
         // match password
         bcrypt.compare(password, user.password, (err, isMatch) => {
           if (err) throw err;
@@ -28,7 +27,17 @@ module.exports = (passport) => {
           else {
             return done(null, false, { message: 'Password incorrect. Please try again!' });
           }
-        })
-      })
+        });
+      });
     }));
+
+  passport.serializeUser((user, done) => {
+    done(null, user.id); // whenever you want to store the user in session serialized by Id
+  });
+
+  passport.deserializeUser((id, done) => {
+    User.findById(id, (err, user) => {
+      done(err, user);
+    });
+  });
 };

@@ -90,7 +90,7 @@ router.post('/login', (req, res, next) => {
 });
 
 /* GET user profile page */
-router.get('/user/profile', (req, res, next) => {
+router.get('/profile', (req, res, next) => {
   res.render('user/profile');
 });
 

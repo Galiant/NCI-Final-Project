@@ -52,6 +52,10 @@ app.use(session({
   saveUninitialized: true
 }));
 
+// passport authentication middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(flash());
 
 // Global variables for messages
@@ -59,6 +63,7 @@ app.use(function(req, res, next) {
   res.locals.success_message = req.flash('success_message');
   res.locals.error_message = req.flash('error_message');
   res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
   next();
 });
 
