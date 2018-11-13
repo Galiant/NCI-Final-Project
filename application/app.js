@@ -8,9 +8,14 @@ const session = require('express-session');
 const bodyParser = require('body-parser'); // allow application to manipulate data in application (create, delete, update)
 const logger = require('morgan');
 const expressHbs = require('express-handlebars');
+const passport = require('passport'); // allow application to authenticate users
 const mongoose = require('mongoose');
 
-const indexRouter = require('./routes/index');
+const routes = require('./routes/index');
+const users = require('./routes/user');
+
+// passport config
+require('./config/passport')(passport);
 
 const app = express();
 
@@ -43,9 +48,13 @@ app.use(methodOverride('_method'));
 // express session middleware
 app.use(session({
   secret: 'thebookboutique',
-  resave: true,
-  saveUninitialized: true
+  resave: false, // if it's true session will be saved on server on each request no matter if something changed or not
+  saveUninitialized: false // if it's true session will be stored to server if nothing happened
 }));
+
+// passport authentication middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(flash());
 
@@ -54,10 +63,15 @@ app.use(function(req, res, next) {
   res.locals.success_message = req.flash('success_message');
   res.locals.error_message = req.flash('error_message');
   res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
+  res.locals.login = req.isAuthenticated();
   next();
-})
+});
 
-app.use('/', indexRouter);
+
+
+app.use('/user', users);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
