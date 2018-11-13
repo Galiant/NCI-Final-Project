@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const { ensureAuthenticated } = require('../helpers/auth');
+
 /* Load book model */
 const Book = require('../models/book');
 
@@ -21,12 +23,12 @@ router.get('/all', (req, res, next) => {
 });
 
 /* GET add book */
-router.get('/manage/add', (req, res, next) => {
+router.get('/manage/add', ensureAuthenticated, (req, res, next) => {
   res.render('manage/add');
 });
 
 /* POST add book - add data to database based on button press */
-router.post('/shop/all', (req, res, next) => {
+router.post('/shop/all', ensureAuthenticated, (req, res, next) => {
   // server side form validation for add book. Code used from https://www.safaribooksonline.com/videos/node-js-express-and/9781789535952/9781789535952-video4_4
   let errors = [];
   if (!req.body.cover) {
@@ -89,7 +91,7 @@ router.post('/shop/all', (req, res, next) => {
 });
 
 /* Edit book - edit database data based on button press and form */
-router.get('/manage/edit/:id', (req, res, next) => {
+router.get('/manage/edit/:id', ensureAuthenticated, (req, res, next) => {
   Book.findOne({
       _id: req.params.id
     })
@@ -102,7 +104,7 @@ router.get('/manage/edit/:id', (req, res, next) => {
 
 
 /* Update book - update database data based on button press and form */
-router.put('/all/:id', (req, res, next) => {
+router.put('/all/:id', ensureAuthenticated, (req, res, next) => {
   Book.findOne({
       _id: req.params.id
     })
@@ -126,7 +128,7 @@ router.put('/all/:id', (req, res, next) => {
 });
 
 /* Delete book - delete database data based on button press */
-router.delete('/all/:id', (req, res, next) => {
+router.delete('/all/:id', ensureAuthenticated, (req, res, next) => {
   Book.remove({ _id: req.params.id })
     .then(() => {
       req.flash('success_message', 'Book successfuly deleted!');
