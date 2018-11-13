@@ -1,14 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+
+/* csrf protection middleware */
+const csrf = require('csurf');
+
+/* passport authentication middleware */
 const passport = require('passport');
 
 /* Load user model */
 const User = require('../models/user');
 
+const csrfProtection = csrf();
+router.use(csrfProtection);
+
 /* GET register page. */
 router.get('/register', (req, res, next) => {
-  res.render('user/register');
+  res.render('user/register', { csrfToken: req.csrfToken() });
 });
 
 /* POST register page */

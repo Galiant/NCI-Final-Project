@@ -48,8 +48,8 @@ app.use(methodOverride('_method'));
 // express session middleware
 app.use(session({
   secret: 'thebookboutique',
-  resave: true,
-  saveUninitialized: true
+  resave: false, // if it's true session will be saved on server on each request no matter if something changed or not
+  saveUninitialized: false // if it's true session will be stored to server if nothing happened
 }));
 
 // passport authentication middleware
