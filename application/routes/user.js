@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const { ensureAuthenticated } = require('../helpers/auth');
 
 /* csrf protection middleware */
 const csrf = require('csurf');
@@ -47,7 +48,7 @@ router.post('/register', (req, res, next) => {
     User.findOne({ email: req.body.email })
       .then(user => {
         if (user) {
-          req.flash('error_message', 'Email address already registered!');
+          req.flash('error_message', 'Email address is already in use!');
           res.redirect('/user/register');
         }
         else {
@@ -85,7 +86,7 @@ router.post('/register', (req, res, next) => {
 
 /* GET login page. */
 router.get('/login', (req, res, next) => {
-  res.render('user/login');
+  res.render('user/login', { csrfToken: req.csrfToken() });
 });
 
 /* POST login page. */
@@ -98,7 +99,7 @@ router.post('/login', (req, res, next) => {
 });
 
 /* GET user profile page */
-router.get('/profile', (req, res, next) => {
+router.get('/profile', ensureAuthenticated, (req, res, next) => {
   res.render('user/profile');
 });
 

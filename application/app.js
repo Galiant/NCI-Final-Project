@@ -64,11 +64,14 @@ app.use(function(req, res, next) {
   res.locals.error_message = req.flash('error_message');
   res.locals.error = req.flash('error');
   res.locals.user = req.user || null;
+  res.locals.login = req.isAuthenticated();
   next();
 });
 
-app.use('/', routes);
+
+
 app.use('/user', users);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
