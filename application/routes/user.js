@@ -94,4 +94,11 @@ router.get('/profile', (req, res, next) => {
   res.render('user/profile');
 });
 
+/* GET logout page */
+router.get('/logout', (req, res, next) => {
+  req.logout();
+  req.flash('success_message', 'You are logged out.');
+  res.redirect('/user/login');
+});
+
 module.exports = router;
