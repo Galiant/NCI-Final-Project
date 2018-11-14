@@ -6,6 +6,9 @@ const { ensureAuthenticated } = require('../helpers/auth');
 /* Load book model */
 const Book = require('../models/book');
 
+/* Load cart model */
+const Cart = require('../models/cart');
+
 /* GET home page. */
 router.get('/', (req, res, next) => {
   res.render('shop/index', { title: 'The Book Boutique' });
@@ -139,6 +142,17 @@ router.delete('/all/:id', ensureAuthenticated, (req, res, next) => {
 /* Add to cart based on button press */
 router.get('/add-to-cart/:id', (req, res, next) => {
   const bookId = req.params.id;
+  let cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  Book.findById(bookId, (err, book) => {
+    if (err) {
+      return res.redirect('/all');
+    }
+    cart.add(book, book.id);
+    req.session.cart = cart;
+    console.log(req.session.cart);
+    res.redirect('/all');
+  });
 });
 
 module.exports = router;
