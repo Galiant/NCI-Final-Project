@@ -19,7 +19,7 @@ router.get('/all', (req, res, next) => {
       res.render('shop/all', {
         books: books
       });
-    })
+    });
 });
 
 /* GET add book */
@@ -68,7 +68,7 @@ router.post('/shop/all', ensureAuthenticated, (req, res, next) => {
       category: req.body.category,
       year: req.body.year,
       price: req.body.price
-    })
+    });
   }
   else {
     const newUser = {
@@ -80,13 +80,13 @@ router.post('/shop/all', ensureAuthenticated, (req, res, next) => {
       category: req.body.category,
       year: req.body.year,
       price: req.body.price
-    }
+    };
     new Book(newUser)
       .save()
       .then(book => {
         req.flash('success_message', 'Book successfuly added!');
-        res.redirect('/all')
-      })
+        res.redirect('/all');
+      });
   }
 });
 
@@ -123,7 +123,7 @@ router.put('/all/:id', ensureAuthenticated, (req, res, next) => {
         .then(book => {
           req.flash('success_message', 'Book successfuly updated!');
           res.redirect('/all');
-        })
+        });
     });
 });
 
@@ -133,7 +133,7 @@ router.delete('/all/:id', ensureAuthenticated, (req, res, next) => {
     .then(() => {
       req.flash('success_message', 'Book successfuly deleted!');
       res.redirect('/all');
-    })
+    });
 });
 
 /* Add to cart based on button press */
