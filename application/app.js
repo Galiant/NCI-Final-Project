@@ -4,12 +4,13 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override'); // // allow application to execute put and delete request
 const flash = require('connect-flash'); // allow application to show flash message
-const session = require('express-session');
 const bodyParser = require('body-parser'); // allow application to manipulate data in application (create, delete, update)
 const logger = require('morgan');
+const session = require('express-session');
 const expressHbs = require('express-handlebars');
 const passport = require('passport'); // allow application to authenticate users
 const mongoose = require('mongoose');
+const mongoStore = require('connect-mongo')(session);
 
 const routes = require('./routes/index');
 const users = require('./routes/user');
@@ -49,7 +50,11 @@ app.use(methodOverride('_method'));
 app.use(session({
   secret: 'thebookboutique',
   resave: false, // if it's true session will be saved on server on each request no matter if something changed or not
-  saveUninitialized: false // if it's true session will be stored to server if nothing happened
+  saveUninitialized: false, // if it's true session will be stored to server if nothing happened
+  store: new mongoStore({
+    mongooseConnection: mongoose.connection
+  }),
+  cookie: { maxAge: 180 * 60 * 1000 }
 }));
 
 // passport authentication middleware
@@ -65,6 +70,7 @@ app.use(function(req, res, next) {
   res.locals.error = req.flash('error');
   res.locals.user = req.user || null;
   res.locals.login = req.isAuthenticated();
+  res.locals.session = req.session;
   next();
 });
 
