@@ -136,4 +136,9 @@ router.delete('/all/:id', ensureAuthenticated, (req, res, next) => {
     })
 });
 
+/* Add to cart based on button press */
+router.get('/add-to-cart/:id', (req, res, next) => {
+  const bookId = req.params.id;
+});
+
 module.exports = router;
