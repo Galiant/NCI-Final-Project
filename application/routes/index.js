@@ -6,6 +6,9 @@ const { ensureAuthenticated } = require('../helpers/auth');
 /* Load book model */
 const Book = require('../models/book');
 
+/* Load cart model */
+const Cart = require('../models/cart');
+
 /* GET home page. */
 router.get('/', (req, res, next) => {
   res.render('shop/index', { title: 'The Book Boutique' });
@@ -19,7 +22,7 @@ router.get('/all', (req, res, next) => {
       res.render('shop/all', {
         books: books
       });
-    })
+    });
 });
 
 /* GET add book */
@@ -68,7 +71,7 @@ router.post('/shop/all', ensureAuthenticated, (req, res, next) => {
       category: req.body.category,
       year: req.body.year,
       price: req.body.price
-    })
+    });
   }
   else {
     const newUser = {
@@ -80,13 +83,13 @@ router.post('/shop/all', ensureAuthenticated, (req, res, next) => {
       category: req.body.category,
       year: req.body.year,
       price: req.body.price
-    }
+    };
     new Book(newUser)
       .save()
       .then(book => {
         req.flash('success_message', 'Book successfuly added!');
-        res.redirect('/all')
-      })
+        res.redirect('/all');
+      });
   }
 });
 
@@ -123,7 +126,7 @@ router.put('/all/:id', ensureAuthenticated, (req, res, next) => {
         .then(book => {
           req.flash('success_message', 'Book successfuly updated!');
           res.redirect('/all');
-        })
+        });
     });
 });
 
@@ -133,7 +136,32 @@ router.delete('/all/:id', ensureAuthenticated, (req, res, next) => {
     .then(() => {
       req.flash('success_message', 'Book successfuly deleted!');
       res.redirect('/all');
-    })
+    });
+});
+
+/* Add to cart based on button press */
+router.get('/add-to-cart/:id', (req, res, next) => {
+  const bookId = req.params.id;
+  let cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  Book.findById(bookId, (err, book) => {
+    if (err) {
+      return res.redirect('/all');
+    }
+    cart.add(book, book.id);
+    req.session.cart = cart;
+    console.log(req.session.cart);
+    res.redirect('/all');
+  });
+});
+
+/* GET cart page */
+router.get('/cart', (req, res, next) => {
+  if (!req.session.cart) {
+    return res.render('shop/cart', { books: null });
+  }
+  const cart = new Cart(req.session.cart);
+  res.render('shop/cart', { books: cart.generateArray(), totalPrice: cart.totalPrice });
 });
 
 module.exports = router;
