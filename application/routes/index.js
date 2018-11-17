@@ -171,8 +171,7 @@ router.get('/checkout', (req, res, next) => {
   }
 
   const cart = new Cart(req.session.cart);
-  const book = new Book(req.session.cart);
-  res.render('shop/checkout', { total: cart.totalPrice });
+  res.render('shop/checkout', { total: cart.totalPrice }); // pass the variable of total to the checkout page
 });
 
 module.exports = router;
