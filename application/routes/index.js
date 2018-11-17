@@ -164,4 +164,15 @@ router.get('/cart', (req, res, next) => {
   res.render('shop/cart', { books: cart.generateArray(), totalPrice: cart.totalPrice });
 });
 
+/* GET checkout page */
+router.get('/checkout', (req, res, next) => {
+  if (!req.session.cart) {
+    return res.redirect('shop/cart');
+  }
+
+  const cart = new Cart(req.session.cart);
+  const book = new Book(req.session.cart);
+  res.render('shop/checkout', { total: cart.totalPrice });
+});
+
 module.exports = router;
