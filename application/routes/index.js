@@ -167,11 +167,36 @@ router.get('/cart', (req, res, next) => {
 /* GET checkout page */
 router.get('/checkout', (req, res, next) => {
   if (!req.session.cart) {
-    return res.redirect('shop/cart');
+    return res.redirect('/cart');
   }
 
   const cart = new Cart(req.session.cart);
   res.render('shop/checkout', { total: cart.totalPrice }); // pass the variable of total to the checkout page
+});
+
+/* POST checkout page */
+router.post('/checkout', (req, res, next) => {
+  if (!req.session.cart) {
+    return res.redirect('/cart');
+  }
+  const cart = new Cart(req.session.cart);
+
+  var stripe = require("stripe")("sk_test_iHXQqwDVPhSUaDZXMYct2wOB");
+
+  stripe.charges.create({
+    amount: cart.totalPrice * 100,
+    currency: "eur",
+    source: req.body.stripeToken, // obtained with Stripe.js
+    description: "Charge for testing environment"
+  }, (err, charge) => {
+    if (err) {
+      req.flash('error', err.message);
+      return res.redirect('/checkout');
+    }
+    req.flash('success_message', 'Sucessfully bought product. Thanks for your purchase.');
+    req.cart = null;
+    res.redirect('/all');
+  });
 });
 
 module.exports = router;
