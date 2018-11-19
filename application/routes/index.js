@@ -200,9 +200,18 @@ router.post('/checkout', (req, res, next) => {
       req.flash('error', err.message);
       return res.redirect('/checkout');
     }
-    req.flash('success', 'Sucessfully bought product. Thanks for your purchase.');
-    req.session.cart = null;
-    res.redirect('/all');
+    const order = new Order({
+      user: req.user,
+      cart: cart,
+      address: req.body.checkoutaddress,
+      name: req.body.checkoutname,
+      paymentId: charge.id
+    });
+    order.save((err, result) => {
+      req.flash('success', 'Sucessfully bought product. Thanks for your purchase.');
+      req.session.cart = null;
+      res.redirect('/all');
+    });
   });
 });
 
