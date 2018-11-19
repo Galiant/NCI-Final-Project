@@ -16,11 +16,14 @@ router.get('/', (req, res, next) => {
 
 /* GET allBooks page. */
 router.get('/all', (req, res, next) => {
+  const success_message = req.flash('success')[0];
   Book.find({})
     .sort({ title: 'ascending' })
     .then(books => {
       res.render('shop/all', {
-        books: books
+        books: books,
+        success_message: success_message,
+        noMessage: !success_message
       });
     });
 });
@@ -170,8 +173,9 @@ router.get('/checkout', (req, res, next) => {
     return res.redirect('/cart');
   }
 
-  const cart = new Cart(req.session.cart);
-  res.render('shop/checkout', { total: cart.totalPrice }); // pass the variable of total to the checkout page
+  let cart = new Cart(req.session.cart);
+  let error_message = req.flash('error')[0];
+  res.render('shop/checkout', { total: cart.totalPrice, error_message: error_message, noError: !error_message }); // pass the variable of total to the checkout page
 });
 
 /* POST checkout page */
@@ -179,9 +183,9 @@ router.post('/checkout', (req, res, next) => {
   if (!req.session.cart) {
     return res.redirect('/cart');
   }
-  const cart = new Cart(req.session.cart);
+  let cart = new Cart(req.session.cart);
 
-  var stripe = require("stripe")("sk_test_iHXQqwDVPhSUaDZXMYct2wOB");
+  const stripe = require("stripe")("sk_test_iHXQqwDVPhSUaDZXMYct2wOB");
 
   stripe.charges.create({
     amount: cart.totalPrice * 100,
@@ -193,7 +197,7 @@ router.post('/checkout', (req, res, next) => {
       req.flash('error', err.message);
       return res.redirect('/checkout');
     }
-    req.flash('success_message', 'Sucessfully bought product. Thanks for your purchase.');
+    req.flash('success', 'Sucessfully bought product. Thanks for your purchase.');
     req.cart = null;
     res.redirect('/all');
   });

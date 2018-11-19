@@ -8,7 +8,9 @@
         <div class="checkout-summary">
           <div class="total">Your Total<span class="price">&euro; {{total}}</span></div>
         </div>
-        <div id="checkout-error" class="alert alert-danger d-none"></div>
+        <div id="checkout-error" class="alert alert-danger {{#if noError}}d-none{{/if}}">
+          {{error_message}}
+        </div>
         <div class="card-details">
           <h3 class="title">Shipping Details</h3>
           <div class="row">
