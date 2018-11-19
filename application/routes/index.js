@@ -9,6 +9,9 @@ const Book = require('../models/book');
 /* Load cart model */
 const Cart = require('../models/cart');
 
+/* Load order model */
+const Order = require('../models/order');
+
 /* GET home page. */
 router.get('/', (req, res, next) => {
   res.render('shop/index', { title: 'The Book Boutique' });
