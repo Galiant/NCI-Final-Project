@@ -9,6 +9,9 @@ const Book = require('../models/book');
 /* Load cart model */
 const Cart = require('../models/cart');
 
+/* Load order model */
+const Order = require('../models/order');
+
 /* GET home page. */
 router.get('/', (req, res, next) => {
   res.render('shop/index', { title: 'The Book Boutique' });
@@ -16,11 +19,14 @@ router.get('/', (req, res, next) => {
 
 /* GET allBooks page. */
 router.get('/all', (req, res, next) => {
+  const success_message = req.flash('success')[0];
   Book.find({})
     .sort({ title: 'ascending' })
     .then(books => {
       res.render('shop/all', {
-        books: books
+        books: books,
+        success_message: success_message,
+        noMessage: !success_message
       });
     });
 });
@@ -162,6 +168,51 @@ router.get('/cart', (req, res, next) => {
   }
   const cart = new Cart(req.session.cart);
   res.render('shop/cart', { books: cart.generateArray(), totalPrice: cart.totalPrice });
+});
+
+/* GET checkout page */
+router.get('/checkout', ensureAuthenticated, (req, res, next) => {
+  if (!req.session.cart) {
+    return res.redirect('/cart');
+  }
+
+  let cart = new Cart(req.session.cart);
+  let error_message = req.flash('error')[0];
+  res.render('shop/checkout', { total: cart.totalPrice, error_message: error_message, noError: !error_message }); // pass the variable of total to the checkout page
+});
+
+/* POST checkout page */
+router.post('/checkout', ensureAuthenticated, (req, res, next) => {
+  if (!req.session.cart) {
+    return res.redirect('/cart');
+  }
+  let cart = new Cart(req.session.cart);
+
+  const stripe = require("stripe")("sk_test_iHXQqwDVPhSUaDZXMYct2wOB");
+
+  stripe.charges.create({
+    amount: cart.totalPrice * 100,
+    currency: "eur",
+    source: req.body.stripeToken, // obtained with Stripe.js
+    description: "Charge for testing environment"
+  }, (err, charge) => {
+    if (err) {
+      req.flash('error', err.message);
+      return res.redirect('/checkout');
+    }
+    const order = new Order({
+      user: req.user,
+      cart: cart,
+      address: req.body.checkoutaddress,
+      name: req.body.checkoutname,
+      paymentId: charge.id
+    });
+    order.save((err, result) => {
+      req.flash('success', 'Sucessfully bought product. Thanks for your purchase.');
+      req.session.cart = null;
+      res.redirect('/all');
+    });
+  });
 });
 
 module.exports = router;
