@@ -171,7 +171,7 @@ router.get('/cart', (req, res, next) => {
 });
 
 /* GET checkout page */
-router.get('/checkout', (req, res, next) => {
+router.get('/checkout', ensureAuthenticated, (req, res, next) => {
   if (!req.session.cart) {
     return res.redirect('/cart');
   }
@@ -182,7 +182,7 @@ router.get('/checkout', (req, res, next) => {
 });
 
 /* POST checkout page */
-router.post('/checkout', (req, res, next) => {
+router.post('/checkout', ensureAuthenticated, (req, res, next) => {
   if (!req.session.cart) {
     return res.redirect('/cart');
   }

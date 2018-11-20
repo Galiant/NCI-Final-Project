@@ -90,12 +90,18 @@ router.get('/login', (req, res, next) => {
 });
 
 /* POST login page. */
-router.post('/login', (req, res, next) => {
-  passport.authenticate('local', {
-    successRedirect: '/user/profile',
-    failureRedirect: '/user/login',
-    failureFlash: true
-  })(req, res, next);
+router.post('/login', passport.authenticate('local', {
+  failureRedirect: '/user/login',
+  failureFlash: true
+}), (req, res, next) => {
+  if (req.session.oldUrl) {
+    const oldUrl = req.session.oldUrl;
+    req.session.oldUrl = null; // don't store old Url here
+    res.redirect(oldUrl);
+  }
+  else {
+    res.redirect('/user/profile');
+  }
 });
 
 /* GET user profile page */
