@@ -161,6 +161,16 @@ router.get('/add-to-cart/:id', (req, res, next) => {
   });
 });
 
+/* Reduce quantity of product in cart*/
+router.get('/reduce/:id', (req, res, next) => {
+  const bookId = req.params.id;
+  let cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  cart.reduceByOne(bookId);
+  req.session.cart = cart;
+  res.redirect('/cart');
+});
+
 /* GET cart page */
 router.get('/cart', (req, res, next) => {
   if (!req.session.cart) {

@@ -1,4 +1,4 @@
-module.exports = function Cart(oldCart) { // pass old cart items 
+module.exports = function Cart(oldCart) { // pass old cart items
   // fetch old data
   this.items = oldCart.items || {};
   this.totalQty = oldCart.totalQty || 0;
@@ -15,6 +15,15 @@ module.exports = function Cart(oldCart) { // pass old cart items
     this.totalQty++;
     this.totalPrice += storedItem.item.price;
   };
+
+  // reduce by one
+  this.reduceByOne = (id) => {
+    this.items[id].qty--;
+    this.items[id].price -= this.items[id].item.price;
+    this.totalQty--;
+    this.totalPrice -= this.items[id].item.price;
+  };
+
   // display cart item like array
   this.generateArray = () => {
     let arr = [];
