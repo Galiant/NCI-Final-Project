@@ -32,7 +32,7 @@
                         <div class="col-md-4">
                           <label for="quantity">Quantity:</label>
                           <div class="quantity">
-                            <a href=""><input type="button" value="+" class="plus"></a>
+                            <a href="/increase/{{this.item._id}}"><input type="button" value="+" class="plus"></a>
                             <input type="number" step="1" max="99" min="0" value="{{ this.qty }}" title="Qty" class="qty">
                             <a href="/reduce/{{this.item._id}}"><input type="button" value="-" class="minus"></a>
                           </div>

@@ -161,6 +161,16 @@ router.get('/add-to-cart/:id', (req, res, next) => {
   });
 });
 
+/* Increase quantity of product in cart*/
+router.get('/increase/:id', (req, res, next) => {
+  const bookId = req.params.id;
+  let cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  cart.increaseByOne(bookId);
+  req.session.cart = cart;
+  res.redirect('/cart');
+});
+
 /* Reduce quantity of product in cart*/
 router.get('/reduce/:id', (req, res, next) => {
   const bookId = req.params.id;
