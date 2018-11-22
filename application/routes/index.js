@@ -181,6 +181,16 @@ router.get('/reduce/:id', (req, res, next) => {
   res.redirect('/cart');
 });
 
+/* Reduce quantity of product in cart*/
+router.get('/remove/:id', (req, res, next) => {
+  const bookId = req.params.id;
+  let cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  cart.removeItem(bookId);
+  req.session.cart = cart;
+  res.redirect('/cart');
+});
+
 /* GET cart page */
 router.get('/cart', (req, res, next) => {
   if (!req.session.cart) {

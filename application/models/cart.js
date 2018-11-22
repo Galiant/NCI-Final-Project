@@ -44,6 +44,15 @@ module.exports = function Cart(oldCart) { // pass old cart items
     }
   };
 
+  // remove item from cart
+  this.removeItem = (id) => {
+    this.totalQty -= this.items[id].qty;
+    this.totalPrice -= this.items[id].price;
+    // round totalPrice on two decimals
+    this.totalPrice = Math.round(this.totalPrice * 1e2) / 1e2;
+    delete this.items[id];
+  };
+
   // display cart item like array
   this.generateArray = () => {
     let arr = [];
