@@ -38,6 +38,10 @@ module.exports = function Cart(oldCart) { // pass old cart items
     this.totalPrice -= this.items[id].item.price;
     // round totalPrice on two decimals
     this.totalPrice = Math.round(this.totalPrice * 1e2) / 1e2;
+
+    if (this.items[id].qty <= 0) {
+      delete this.items[id];
+    }
   };
 
   // display cart item like array
