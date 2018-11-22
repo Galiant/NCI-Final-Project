@@ -161,6 +161,36 @@ router.get('/add-to-cart/:id', (req, res, next) => {
   });
 });
 
+/* Increase quantity of product in cart*/
+router.get('/increase/:id', (req, res, next) => {
+  const bookId = req.params.id;
+  let cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  cart.increaseByOne(bookId);
+  req.session.cart = cart;
+  res.redirect('/cart');
+});
+
+/* Reduce quantity of product in cart*/
+router.get('/reduce/:id', (req, res, next) => {
+  const bookId = req.params.id;
+  let cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  cart.reduceByOne(bookId);
+  req.session.cart = cart;
+  res.redirect('/cart');
+});
+
+/* Reduce quantity of product in cart*/
+router.get('/remove/:id', (req, res, next) => {
+  const bookId = req.params.id;
+  let cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  cart.removeItem(bookId);
+  req.session.cart = cart;
+  res.redirect('/cart');
+});
+
 /* GET cart page */
 router.get('/cart', (req, res, next) => {
   if (!req.session.cart) {
@@ -188,6 +218,7 @@ router.post('/checkout', ensureAuthenticated, (req, res, next) => {
   }
   let cart = new Cart(req.session.cart);
 
+  // code below is from https://stripe.com/docs/api/charges/create
   const stripe = require("stripe")("sk_test_iHXQqwDVPhSUaDZXMYct2wOB");
 
   stripe.charges.create({

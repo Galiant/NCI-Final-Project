@@ -3,6 +3,12 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const { ensureAuthenticated } = require('../helpers/auth');
 
+/* Load cart model */
+const Cart = require('../models/cart');
+
+/* Load order model */
+const Order = require('../models/order');
+
 /* csrf protection middleware */
 const csrf = require('csurf');
 
@@ -106,7 +112,18 @@ router.post('/login', passport.authenticate('local', {
 
 /* GET user profile page */
 router.get('/profile', ensureAuthenticated, (req, res, next) => {
-  res.render('user/profile');
+  Order.find({ user: req.user }, (err, orders) => {
+    if (err) {
+      return res.write('Error!');
+    }
+    let cart;
+    // loop through all orders
+    orders.forEach((order) => {
+      cart = new Cart(order.cart);
+      order.items = cart.generateArray();
+    });
+    res.render('user/profile', { orders: orders });
+  });
 });
 
 /* GET logout page */
