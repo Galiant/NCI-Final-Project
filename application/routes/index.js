@@ -208,6 +208,7 @@ router.post('/checkout', ensureAuthenticated, (req, res, next) => {
   }
   let cart = new Cart(req.session.cart);
 
+  // code below is from https://stripe.com/docs/api/charges/create
   const stripe = require("stripe")("sk_test_iHXQqwDVPhSUaDZXMYct2wOB");
 
   stripe.charges.create({

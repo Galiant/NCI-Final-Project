@@ -20,16 +20,24 @@ module.exports = function Cart(oldCart) { // pass old cart items
   this.increaseByOne = (id) => {
     this.items[id].qty++;
     this.items[id].price += this.items[id].item.price;
+    // round items[id].price on two decimals
+    this.items[id].price = Math.round(this.items[id].price * 1e2) / 1e2;
     this.totalQty++;
     this.totalPrice += this.items[id].item.price;
+    // round totalPrice on two decimals
+    this.totalPrice = Math.round(this.totalPrice * 1e2) / 1e2;
   };
 
   // reduce by one
   this.reduceByOne = (id) => {
     this.items[id].qty--;
     this.items[id].price -= this.items[id].item.price;
+    // round items[id].price on two decimals
+    this.items[id].price = Math.round(this.items[id].price * 1e2) / 1e2;
     this.totalQty--;
     this.totalPrice -= this.items[id].item.price;
+    // round totalPrice on two decimals
+    this.totalPrice = Math.round(this.totalPrice * 1e2) / 1e2;
   };
 
   // display cart item like array
