@@ -11,11 +11,6 @@
               <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-success">Details</button>
                 <a href="/add-to-cart/{{id}}"><button type="button" class="btn btn-sm btn-success">Add</button></a>
-                <a href="/manage/edit/{{id}}"><button type="button" class="btn btn-sm btn-success">Edit</button></a>
-                <form method="post" action="/all/{{id}}?_method=DELETE">
-                  <input type="hidden" name="_method" value="DELETE">
-                  <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                </form>
               </div>
               <big class="text-muted">&euro;{{price}}</big>
             </div>
