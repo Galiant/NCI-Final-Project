@@ -31,6 +31,11 @@ router.get('/all', (req, res, next) => {
     });
 });
 
+/* GET manage books */
+router.get('/manage', ensureAuthenticated, (req, res, next) => {
+  res.render('manage/manage');
+});
+
 /* GET add book */
 router.get('/manage/add', ensureAuthenticated, (req, res, next) => {
   res.render('manage/add');
