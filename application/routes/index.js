@@ -32,8 +32,14 @@ router.get('/all', (req, res, next) => {
 });
 
 /* GET manage books */
-router.get('/manage', ensureAuthenticated, (req, res, next) => {
-  res.render('manage/manage');
+router.get('/manage', (req, res, next) => {
+  Book.find({})
+    .sort({ title: 'ascending' })
+    .then(books => {
+      res.render('manage/manage', {
+        books: books,
+      });
+    });
 });
 
 /* GET add book */
