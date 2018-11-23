@@ -213,3 +213,19 @@ body {
     padding: 20px 40px 30px; }
     .checkout-form .card-details button {
       margin-top: 2rem; } }
+
+/* Manage */
+.manage-page {
+  padding-bottom: 50px;
+  font-family: 'Montserrat', sans-serif; }
+  .manage-page .dark {
+    background-color: #f6f6f6; }
+    .manage-page .dark .block-heading p {
+      opacity: 0.8; }
+  .manage-page .block-heading {
+    padding-top: 50px;
+    margin-bottom: 40px;
+    text-align: center; }
+    .manage-page .block-heading h2 {
+      margin-bottom: 1.2rem;
+      color: #3b99e0; }

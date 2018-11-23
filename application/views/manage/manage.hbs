@@ -1,26 +1,38 @@
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Book</th>
-      <th scope="col">Author</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each books}}
-    <tr>
-      <th scope="row"></th>
-      <td>{{title}}</td>
-      <td>{{author}}</td>
-      <td>
-        <btn class="btn-sm btn-success">Update Book</btn>
-      </td>
-      <td>
-        <btn class="btn-sm btn-success">Delete Book</btn>
-      </td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
+<main class="page checkout-page">
+  <section class="manage-page dark">
+    <div class="container">
+      <div class="block-heading">
+        <h2>Manage Books</h2>
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Book</th>
+            <th scope="col">Author</th>
+            <th scope="col">Price</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each books}}
+          <tr>
+            <td>{{title}}</td>
+            <td>{{author}}</td>
+            <td>{{price}}</td>
+            <td>
+              <a href="/manage/edit/{{id}}"><button type="button" class="btn btn-sm btn-success">Update Book</button></a>
+            </td>
+            <td>
+              <form method="post" action="/all/{{id}}?_method=DELETE">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="button" class="btn btn-sm btn-success">Delete Book</button>
+              </form>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
