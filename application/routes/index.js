@@ -32,7 +32,7 @@ router.get('/all', (req, res, next) => {
 });
 
 /* GET manage books */
-router.get('/manage', (req, res, next) => {
+router.get('/manage', ensureAuthenticated, (req, res, next) => {
   const success_message = req.flash('success')[0];
   Book.find({})
     .sort({ title: 'ascending' })
