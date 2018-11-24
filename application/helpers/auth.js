@@ -7,4 +7,4 @@ module.exports = {
     req.flash('error_message', 'Not authorized to use.');
     res.redirect('/user/login');
   }
-}
+};

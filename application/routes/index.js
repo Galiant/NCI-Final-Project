@@ -31,6 +31,20 @@ router.get('/all', (req, res, next) => {
     });
 });
 
+/* GET manage books */
+router.get('/manage', ensureAuthenticated, (req, res, next) => {
+  const success_message = req.flash('success')[0];
+  Book.find({})
+    .sort({ title: 'ascending' })
+    .then(books => {
+      res.render('manage/manage', {
+        books: books,
+        success_message: success_message,
+        noMessage: !success_message
+      });
+    });
+});
+
 /* GET add book */
 router.get('/manage/add', ensureAuthenticated, (req, res, next) => {
   res.render('manage/add');
@@ -131,17 +145,17 @@ router.put('/all/:id', ensureAuthenticated, (req, res, next) => {
       book.save()
         .then(book => {
           req.flash('success_message', 'Book successfuly updated!');
-          res.redirect('/all');
+          res.redirect('/manage');
         });
     });
 });
 
 /* Delete book - delete database data based on button press */
-router.delete('/all/:id', ensureAuthenticated, (req, res, next) => {
+router.delete('/manage/:id', ensureAuthenticated, (req, res, next) => {
   Book.remove({ _id: req.params.id })
     .then(() => {
       req.flash('success_message', 'Book successfuly deleted!');
-      res.redirect('/all');
+      res.redirect('/manage');
     });
 });
 
