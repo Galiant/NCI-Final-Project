@@ -6,6 +6,7 @@ $(document).ready(function() {
 });
 
 //When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by book name, 1 for sorting by author
+// code from https://www.w3schools.com/howto/howto_js_sort_table.asp
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("manageTable");
@@ -27,6 +28,12 @@ function sortTable(n) {
       one from current row and one from the next: */
       x = rows[i].getElementsByTagName("TD")[n];
       y = rows[i + 1].getElementsByTagName("TD")[n];
+      //check if the two rows should switch place:
+      if (Number(x.innerHTML) > Number(y.innerHTML)) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
       /* Check if the two rows should switch place,
       based on the direction, asc or desc: */
       if (dir == "asc") {
@@ -42,6 +49,12 @@ function sortTable(n) {
           shouldSwitch = true;
           break;
         }
+      }
+      //check if the two rows should switch place based on the number
+      if (Number(x.innerHTML) > Number(y.innerHTML)) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
       }
     }
     if (shouldSwitch) {

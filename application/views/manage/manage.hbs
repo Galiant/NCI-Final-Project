@@ -14,7 +14,7 @@
           <tr>
             <th scope="col" onclick="sortTable(0)">Book</th>
             <th scope="col" onclick="sortTable(1)">Author</th>
-            <th scope="col">Price</th>
+            <th scope="col" onclick="sortTable(3)">Price</th>
             <th scope="col"></th>
             <th scope="col"></th>
           </tr>
@@ -26,12 +26,12 @@
             <td>{{author}}</td>
             <td>{{price}}</td>
             <td>
-              <a href="/manage/edit/{{id}}"><button type="button" class="btn btn-sm btn-success">Update Book</button></a>
+              <a href="/manage/edit/{{id}} "><button type="button " class="btn btn-sm btn-success ">Update Book</button></a>
             </td>
             <td>
-              <form method="post" action="/manage/{{id}}?_method=DELETE">
-                <input type="hidden" name="_method" value="DELETE">
-                <button type="submit" class="btn btn-sm btn-danger">Delete Book</button>
+              <form method="post " action="/manage/{{id}}?_method=DELETE ">
+                <input type="hidden" name="_method" value="DELETE ">
+                <button type="submit " class="btn btn-sm btn-danger ">Delete Book</button>
               </form>
             </td>
           </tr>
