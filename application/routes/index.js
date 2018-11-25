@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { ensureAuthenticated } = require('../helpers/auth');
+const { isAdmin } = require('../helpers/admin');
 
 /* Load book model */
 const Book = require('../models/book');
@@ -32,7 +33,7 @@ router.get('/all', (req, res, next) => {
 });
 
 /* GET manage books */
-router.get('/manage', ensureAuthenticated, (req, res, next) => {
+router.get('/manage', isAdmin, (req, res, next) => {
   const success_message = req.flash('success')[0];
   Book.find({})
     .sort({ title: 'ascending' })
