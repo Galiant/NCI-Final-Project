@@ -7,13 +7,18 @@ const flash = require('connect-flash'); // allow application to show flash messa
 const bodyParser = require('body-parser'); // allow application to manipulate data in application (create, delete, update)
 const logger = require('morgan');
 const session = require('express-session');
+const Handlebars = require('handlebars'); // load Handlebars
 const expressHbs = require('express-handlebars');
+const H = require('just-handlebars-helpers'); // load the package to allow handlebars to use helpers
 const passport = require('passport'); // allow application to authenticate users
 const mongoose = require('mongoose');
 const mongoStore = require('connect-mongo')(session);
 
 const routes = require('./routes/index');
 const users = require('./routes/user');
+
+// register helpers for Handlebars. Source https://github.com/leapfrogtechnology/just-handlebars-helpers
+H.registerHelpers(Handlebars);
 
 // passport config
 require('./config/passport')(passport);
@@ -73,7 +78,6 @@ app.use(function(req, res, next) {
   res.locals.session = req.session;
   next();
 });
-
 
 
 app.use('/user', users);
