@@ -52,4 +52,21 @@
       </article>
     </aside>
   </div>
+
+  <div class="row ">
+    <div class="col-lg-12 p-4">
+      {{#if user}}
+      <form method="post" action="/book/{{book.id}}">
+        <div class="form-group">
+          <label for="review"><h4>Add Review</h4></label>
+          <textarea class="form-control" rows="5" id="review"></textarea>
+        </div>
+        <input type="submit" value="Submit" class="btn btn-outline-primary"></input>
+      </form>
+      {{else}}
+      <p>Please <a href="/user/login">login</a> to leave a review.</p>
+      {{/if}}
+    </div>
+  </div>
+
 </div>
