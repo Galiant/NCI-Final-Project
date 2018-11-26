@@ -13,12 +13,12 @@ const Cart = require('../models/cart');
 /* Load order model */
 const Order = require('../models/order');
 
-/* GET home page. */
+/* GET home page */
 router.get('/', (req, res, next) => {
   res.render('shop/index', { title: 'The Book Boutique' });
 });
 
-/* GET allBooks page. */
+/* GET allBooks page */
 router.get('/all', (req, res, next) => {
   const success_message = req.flash('success')[0];
   Book.find({})
@@ -28,6 +28,18 @@ router.get('/all', (req, res, next) => {
         books: books,
         success_message: success_message,
         noMessage: !success_message
+      });
+    });
+});
+
+/* GET book page */
+router.get('/book/:id', (req, res, next) => {
+  Book.findOne({
+      _id: req.params.id
+    })
+    .then(book => {
+      res.render('shop/book', {
+        book: book
       });
     });
 });
@@ -196,7 +208,7 @@ router.get('/reduce/:id', (req, res, next) => {
   res.redirect('/cart');
 });
 
-/* Reduce quantity of product in cart*/
+/* Remove product from cart*/
 router.get('/remove/:id', (req, res, next) => {
   const bookId = req.params.id;
   let cart = new Cart(req.session.cart ? req.session.cart : {});

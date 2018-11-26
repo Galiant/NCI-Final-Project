@@ -1,0 +1,55 @@
+<div class="card">
+  <div class="row no-gutters">
+    <aside class="col-lg-3 pt-5">
+      <article class=" text-center">
+        <div class="img-big-wrap ">
+          <a href="/{{book.cover}} " data-fancybox=" ">
+            <img src="/{{book.cover}} " class="img-fluid " alt="{{book.title}} ">
+          </a>
+        </div>
+      </article>
+    </aside>
+    <aside class="col-lg-9 ">
+      <article class="p-5 ">
+        <h3 class="title mb-4 ">{{book.title}}</h3>
+        <div class="row ">
+          <div class="col-lg-8 ">
+            <dl class="row ">
+              <dt class="col-lg-4 ">Author:</dt>
+              <dd class="col-lg-8 ">{{book.author}}</dd>
+
+              <dt class="col-lg-4 ">Publisher:</dt>
+              <dd class="col-lg-8 ">{{book.publisher}}</dd>
+
+              <dt class="col-lg-4 ">Category:</dt>
+              <dd class="col-lg-8 ">{{book.category}}</dd>
+
+              <dt class="col-lg-4 ">Year:</dt>
+              <dd class="col-lg-8 ">{{book.year}}</dd>
+            </dl>
+          </div>
+          <div class="col-lg-4 ">
+            <div class="mb-3 ">
+              <div class="price h2 text-warning ">
+                <em><span class="currency ">&euro;</span> <span class="num ">{{book.price}}</span></em>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <dl>
+          <dt>Description:</dt>
+          <dd>
+            <p>{{book.description}}</p>
+          </dd>
+        </dl>
+
+        <hr>
+
+        <a href="/add-to-cart/{{book.id}}" class="btn btn-outline-primary "> <i class="fas fa-shopping-cart "></i> Add to cart </a>
+        <a href="" class="btn btn-outline-primary "> <i class="fas fa-heart "></i> Add to wishlist </a>
+        <a href="" class="btn btn-outline-primary "> <i class="fas fa-book "></i> Add to reading list </a>
+      </article>
+    </aside>
+  </div>
+</div>
