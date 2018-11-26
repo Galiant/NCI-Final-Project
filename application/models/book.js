@@ -10,7 +10,12 @@ const bookSchema = new Schema({
   description: { type: String, required: true },
   category: { type: String, required: true },
   year: { type: Number, required: true },
-  price: { type: Number, required: true }
+  price: { type: Number, required: true },
+  reviews: [{
+    reviewBody: { type: String, required: true },
+    reviewDate: { type: Date, default: Date.now() },
+    reviewUser: { type: Schema.Types.ObjectId, ref: 'users' }
+  }]
 });
 
 // export model
