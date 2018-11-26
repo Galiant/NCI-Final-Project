@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const { ensureAuthenticated } = require('../helpers/auth');
+const { isAdmin } = require('../helpers/admin');
+const admin = "admin@gmail.com";
 
 /* Load cart model */
 const Cart = require('../models/cart');
@@ -105,6 +107,11 @@ router.post('/login', passport.authenticate('local', {
     req.session.oldUrl = null; // don't store old Url here
     res.redirect(oldUrl);
   }
+  // if user is login with admin credential
+  else if (req.user.email === admin) {
+    res.redirect('/manage');
+  }
+  // otherwise
   else {
     res.redirect('/user/profile');
   }
