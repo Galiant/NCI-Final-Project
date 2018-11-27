@@ -37,6 +37,7 @@ router.get('/book/:id', (req, res, next) => {
   Book.findOne({
       _id: req.params.id
     })
+    .populate('reviews.reviewUser')
     .then(book => {
       res.render('shop/book', {
         book: book

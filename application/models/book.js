@@ -14,7 +14,7 @@ const bookSchema = new Schema({
   reviews: [{
     reviewBody: { type: String, required: true },
     reviewDate: { type: Date, default: Date.now() },
-    reviewUser: { type: Schema.Types.ObjectId, ref: 'users' }
+    reviewUser: { type: Schema.Types.ObjectId, ref: 'User' }
   }]
 });
 

@@ -17,6 +17,9 @@ const mongoStore = require('connect-mongo')(session);
 const routes = require('./routes/index');
 const users = require('./routes/user');
 
+// template helper for adding formatted dates https://github.com/tcort/handlebars-dateformat
+Handlebars.registerHelper('dateFormat', require('handlebars-dateformat'));
+
 // register helpers for Handlebars. Source https://github.com/leapfrogtechnology/just-handlebars-helpers
 H.registerHelpers(Handlebars);
 

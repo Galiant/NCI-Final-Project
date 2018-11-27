@@ -65,8 +65,26 @@
       </form>
       {{else}}
       <p>Please <a href="/user/login">login</a> to leave a review.</p>
-      {{/if}}
+      {{/if}} {{#each book.reviews}}
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="reviews">
+            <div class="row blockquote review-item">
+              <div class="col-md-3 text-center">
+                <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
+                <div class="caption">
+                  <small>{{sprintf reviewUser.email}}</small>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <p class="review-text">{{reviewBody}}</p>
+                <small class="review-date">Posted: {{dateFormat reviewDate 'DD-MM-YYYY, h:mm:ss a'}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
     </div>
   </div>
-
 </div>
