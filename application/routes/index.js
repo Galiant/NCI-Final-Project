@@ -290,7 +290,7 @@ router.post('/review/:id', (req, res, next) => {
 
       book.save()
         .then(book => {
-          res.redirect(`/book/:id`);
+          res.redirect(`/book/${book.id}`);
         });
     });
 });
