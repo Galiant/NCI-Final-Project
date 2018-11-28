@@ -75,3 +75,7 @@ function sortTable(n) {
     }
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  // code here
+});

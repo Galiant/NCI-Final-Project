@@ -37,6 +37,7 @@ router.get('/book/:id', (req, res, next) => {
   Book.findOne({
       _id: req.params.id
     })
+    .populate('reviews.reviewUser')
     .then(book => {
       res.render('shop/book', {
         book: book
@@ -271,6 +272,28 @@ router.post('/checkout', ensureAuthenticated, (req, res, next) => {
       res.redirect('/all');
     });
   });
+});
+
+
+/* Add review */
+router.post('/review/:id', (req, res, next) => {
+  Book.findOne({
+      _id: req.params.id
+    })
+    .then(book => {
+      const newReview = {
+        reviewBody: req.body.reviewBody,
+        reviewUser: req.user.id
+      };
+
+      // Add to comments array
+      book.reviews.unshift(newReview);
+
+      book.save()
+        .then(book => {
+          res.redirect(`/book/${book.id}`);
+        });
+    });
 });
 
 module.exports = router;
