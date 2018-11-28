@@ -231,6 +231,22 @@ router.get('/cart', (req, res, next) => {
   res.render('shop/cart', { books: cart.generateArray(), totalPrice: cart.totalPrice });
 });
 
+/* Add to wishlist based on button press */
+router.get('/add-to-wishlist/:id', (req, res, next) => {
+  const bookId = req.params.id;
+  let wishlist = new Wishlist(req.session.cart ? req.session.cart : {});
+
+  Book.findById(bookId, (err, book) => {
+    if (err) {
+      return res.redirect('/all');
+    }
+    wishlist.add(book, book.id);
+    req.session.wishlist = wishlist;
+    console.log(req.session.wishlist);
+    res.redirect('/all');
+  });
+});
+
 /* GET wishlist page */
 router.get('/wishlist', (req, res, next) => {
   if (!req.session.wishlist) {
