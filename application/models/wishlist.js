@@ -4,14 +4,14 @@ module.exports = function Wishlist(oldWishlist) { // pass old cart items
   this.totalQty = oldWishlist.totalQty || 0;
   this.totalPrice = oldWishlist.totalPrice || 0;
 
-  // add item to cart
+  // add item to wishlist
   this.add = (item, id) => {
     let storedItem = this.items[id];
     if (!storedItem) {
       storedItem = this.items[id] = { item: item, qty: 0, price: 0 };
     }
     storedItem.qty++;
-    storedItem.price = storedItem.item.price * storedItem.qty;
+    storedItem.price = storedItem.item.price;
     this.totalQty++;
     this.totalPrice += storedItem.item.price;
   };

@@ -234,7 +234,7 @@ router.get('/cart', (req, res, next) => {
 /* Add to wishlist based on button press */
 router.get('/add-to-wishlist/:id', (req, res, next) => {
   const bookId = req.params.id;
-  let wishlist = new Wishlist(req.session.cart ? req.session.cart : {});
+  let wishlist = new Wishlist(req.session.wishlist ? req.session.wishlist : {});
 
   Book.findById(bookId, (err, book) => {
     if (err) {
@@ -246,6 +246,17 @@ router.get('/add-to-wishlist/:id', (req, res, next) => {
     res.redirect('/all');
   });
 });
+
+/* Remove product from wishlist*/
+router.get('/removewishlist/:id', (req, res, next) => {
+  const bookId = req.params.id;
+  let wishlist = new Wishlist(req.session.wishlist ? req.session.wishlist : {});
+
+  wishlist.removeItem(bookId);
+  req.session.wishlist = wishlist;
+  res.redirect('/wishlist');
+});
+
 
 /* GET wishlist page */
 router.get('/wishlist', (req, res, next) => {
