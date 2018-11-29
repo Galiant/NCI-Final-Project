@@ -15,7 +15,8 @@
                 <h6 class="card-text text-center"><a href="/book/{{this.item._id}}">{{ this.item.title }}</a></h6>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <a href="/add-to-cart/{{this.item._id}}" class="btn btn-sm btn-success">Add to cart</a>
+                    <a href="/add-to-cart/{{this.item._id}}" class="btn btn-sm btn-success">Cart</a>
+                    <a href="/removewishlist/{{this.item._id}}" class="btn btn-sm btn-success">Remove</a>
                   </div>
                   <big class="text-muted">&euro; {{ this.price }}</big>
                 </div>
