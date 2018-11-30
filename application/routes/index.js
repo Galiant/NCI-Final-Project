@@ -10,6 +10,9 @@ const Book = require('../models/book');
 /* Load cart model */
 const Cart = require('../models/cart');
 
+/* Load wishlist model */
+const Wishlist = require('../models/wishlist');
+
 /* Load order model */
 const Order = require('../models/order');
 
@@ -226,6 +229,42 @@ router.get('/cart', (req, res, next) => {
   }
   const cart = new Cart(req.session.cart);
   res.render('shop/cart', { books: cart.generateArray(), totalPrice: cart.totalPrice });
+});
+
+/* Add to wishlist based on button press */
+router.get('/add-to-wishlist/:id', ensureAuthenticated, (req, res, next) => {
+  const bookId = req.params.id;
+  let wishlist = new Wishlist(req.session.wishlist ? req.session.wishlist : {});
+
+  Book.findById(bookId, (err, book) => {
+    if (err) {
+      return res.redirect('/all');
+    }
+    wishlist.add(book, book.id);
+    req.session.wishlist = wishlist;
+    console.log(req.session.wishlist);
+    res.redirect('/all');
+  });
+});
+
+/* Remove product from wishlist*/
+router.get('/removewishlist/:id', (req, res, next) => {
+  const bookId = req.params.id;
+  let wishlist = new Wishlist(req.session.wishlist ? req.session.wishlist : {});
+
+  wishlist.removeItem(bookId);
+  req.session.wishlist = wishlist;
+  res.redirect('/wishlist');
+});
+
+
+/* GET wishlist page */
+router.get('/wishlist', ensureAuthenticated, (req, res, next) => {
+  if (!req.session.wishlist) {
+    return res.render('shop/wishlist', { books: null });
+  }
+  const wishlist = new Wishlist(req.session.wishlist);
+  res.render('shop/wishlist', { books: wishlist.generateArray(), totalPrice: wishlist.totalPrice });
 });
 
 /* GET checkout page */
