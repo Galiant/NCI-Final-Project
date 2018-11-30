@@ -232,7 +232,7 @@ router.get('/cart', (req, res, next) => {
 });
 
 /* Add to wishlist based on button press */
-router.get('/add-to-wishlist/:id', (req, res, next) => {
+router.get('/add-to-wishlist/:id', ensureAuthenticated, (req, res, next) => {
   const bookId = req.params.id;
   let wishlist = new Wishlist(req.session.wishlist ? req.session.wishlist : {});
 
@@ -259,7 +259,7 @@ router.get('/removewishlist/:id', (req, res, next) => {
 
 
 /* GET wishlist page */
-router.get('/wishlist', (req, res, next) => {
+router.get('/wishlist', ensureAuthenticated, (req, res, next) => {
   if (!req.session.wishlist) {
     return res.render('shop/wishlist', { books: null });
   }
