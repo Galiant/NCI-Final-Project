@@ -1,0 +1,31 @@
+<main class="page checkout-page">
+  <section class="manage-page dark">
+    <div class="container">
+      <div class="block-heading">
+        <h2>My Reading List</h2>
+      </div>
+      <table class="table table-hover" id="manageTable">
+        <thead>
+          <tr>
+            <th scope="col" onclick="sortTable(0)">Book</th>
+            <th scope="col" onclick="sortTable(1)">Author</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{# if books}} {{#each books}}
+          <tr>
+            <td><a href="/book/{{this.item._id}}">{{this.item.title}}</a></td>
+            <td>{{this.item.author}}</td>
+            <td>
+              <a href="/removeList/{{this.item._id}}"><button type="button " class="btn btn-sm btn-danger">Remove Book</button></a>
+            </td>
+          </tr>
+          {{/each}} {{else}}
+          <h2 class="text-center">Your reading list is empty.</h2>
+          {{/if}}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
