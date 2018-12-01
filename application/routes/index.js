@@ -429,5 +429,18 @@ router.get('/category/childrens-books', (req, res, next) => {
     });
 });
 
+/* Search function */
+// Inspiration from https://stackoverflow.com/questions/28775051/best-way-to-perform-a-full-text-search-in-mongodb-and-mongoose
+router.post('/search', (req, res, next) => {
+  const searchTerm = req.body.search;
+  Book.find({
+      $text: { $search: searchTerm }
+    })
+    .then(books => {
+      res.render('shop/all', {
+        books: books
+      });
+    });
+});
 
 module.exports = router;
