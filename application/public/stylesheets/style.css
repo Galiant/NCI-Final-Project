@@ -4,6 +4,12 @@ body {
 
 .card {
   margin-bottom: 1.5rem !important; }
+  .card .card-img-top {
+    width: 125px;
+    height: auto;
+    display: block;
+    margin: auto;
+    padding-top: 20px; }
   .card h5 {
     padding-bottom: 1rem; }
 
@@ -176,7 +182,7 @@ body {
   .checkout-form .title {
     font-size: 1rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    margin-bottom: 0.8em;
+    margin-bottom: 0.8rem;
     padding-top: 25px;
     padding-bottom: 8px; }
   .checkout-form .checkout-summary {
