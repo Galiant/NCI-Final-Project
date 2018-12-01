@@ -374,6 +374,16 @@ router.post('/review/:id', (req, res, next) => {
     });
 });
 
+/* GET Fiction category page */
+router.get('/category/fiction', (req, res, next) => {
+  Book.find({ category: "Fiction" })
+    .sort({ title: 'ascending' })
+    .then(books => {
+      res.render('shop/fiction', {
+        books: books
+      });
+    });
+});
 
 
 module.exports = router;
