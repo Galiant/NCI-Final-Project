@@ -293,12 +293,12 @@ router.get('/removelist/:id', ensureAuthenticated, (req, res, next) => {
 
   list.removeItem(bookId);
   req.session.list = list;
-  res.redirect('/readinglist');
+  res.redirect('/reading-list');
 });
 
 
 /* GET reading list page */
-router.get('/readinglist', ensureAuthenticated, (req, res, next) => {
+router.get('/reading-list', ensureAuthenticated, (req, res, next) => {
   if (!req.session.list) {
     return res.render('shop/list', { books: null });
   }
@@ -374,6 +374,60 @@ router.post('/review/:id', (req, res, next) => {
     });
 });
 
+/* GET Bestsellers category page */
+router.get('/category/bestsellers', (req, res, next) => {
+  Book.find({ category: "Bestsellers" })
+    .sort({ title: 'ascending' })
+    .then(books => {
+      res.render('shop/bestsellers', {
+        books: books
+      });
+    });
+});
+
+/* GET New releases category page */
+router.get('/category/new-releases', (req, res, next) => {
+  Book.find({ category: "New Releases" })
+    .sort({ title: 'ascending' })
+    .then(books => {
+      res.render('shop/new', {
+        books: books
+      });
+    });
+});
+
+/* GET Fiction category page */
+router.get('/category/fiction', (req, res, next) => {
+  Book.find({ category: "Fiction" })
+    .sort({ title: 'ascending' })
+    .then(books => {
+      res.render('shop/fiction', {
+        books: books
+      });
+    });
+});
+
+/* GET Non-fiction category page */
+router.get('/category/non-fiction', (req, res, next) => {
+  Book.find({ category: "Non-fiction" })
+    .sort({ title: 'ascending' })
+    .then(books => {
+      res.render('shop/nonfiction', {
+        books: books
+      });
+    });
+});
+
+/* GET Children's books category page */
+router.get('/category/childrens-books', (req, res, next) => {
+  Book.find({ category: "Children's Books" })
+    .sort({ title: 'ascending' })
+    .then(books => {
+      res.render('shop/childrens', {
+        books: books
+      });
+    });
+});
 
 
 module.exports = router;
