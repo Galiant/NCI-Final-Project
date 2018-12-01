@@ -1,6 +1,6 @@
-module.exports = function Wishlist(oldWishlist) { // pass old cart items
+module.exports = function List(oldList) { // pass old cart items
   // fetch old data
-  this.items = oldWishlist.items || {};
+  this.items = oldList.items || {};
 
   // add item to wishlist
   this.add = (item, id) => {
