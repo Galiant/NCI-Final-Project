@@ -385,6 +385,17 @@ router.get('/category/fiction', (req, res, next) => {
     });
 });
 
+/* GET Non-fiction category page */
+router.get('/category/non-fiction', (req, res, next) => {
+  Book.find({ category: "Non-fiction" })
+    .sort({ title: 'ascending' })
+    .then(books => {
+      res.render('shop/nonfiction', {
+        books: books
+      });
+    });
+});
+
 /* GET Children's books category page */
 router.get('/category/childrens-books', (req, res, next) => {
   Book.find({ category: "Children's Books" })
