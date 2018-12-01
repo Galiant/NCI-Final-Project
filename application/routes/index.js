@@ -248,7 +248,7 @@ router.get('/add-to-wishlist/:id', ensureAuthenticated, (req, res, next) => {
 });
 
 /* Remove product from wishlist*/
-router.get('/removewishlist/:id', (req, res, next) => {
+router.get('/removewishlist/:id', ensureAuthenticated, (req, res, next) => {
   const bookId = req.params.id;
   let wishlist = new Wishlist(req.session.wishlist ? req.session.wishlist : {});
 
@@ -264,7 +264,7 @@ router.get('/wishlist', ensureAuthenticated, (req, res, next) => {
     return res.render('shop/wishlist', { books: null });
   }
   const wishlist = new Wishlist(req.session.wishlist);
-  res.render('shop/wishlist', { books: wishlist.generateArray(), totalPrice: wishlist.totalPrice });
+  res.render('shop/wishlist', { books: wishlist.generateArray() });
 });
 
 /* GET checkout page */

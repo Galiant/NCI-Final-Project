@@ -62,7 +62,7 @@ app.use(session({
   store: new mongoStore({
     mongooseConnection: mongoose.connection
   }),
-  cookie: { maxAge: 14 * 24 * 60 * 60 * 1000 } // set session for 14 days
+  cookie: { maxAge: 1209600000 } // set session for 14 days
 }));
 
 // passport authentication middleware
