@@ -6,6 +6,13 @@ body {
   background: $primary;
 }
 
+.jumbotron {
+  background-image: url("/images/headerImage.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
 .card {
   margin-bottom: 1.5rem !important;
   .card-img-top {

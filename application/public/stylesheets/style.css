@@ -2,6 +2,12 @@
 body {
   background: #f6f6f6; }
 
+.jumbotron {
+  background-image: url("/images/headerImage.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white; }
+
 .card {
   margin-bottom: 1.5rem !important; }
   .card .card-img-top {
