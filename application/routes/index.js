@@ -298,7 +298,7 @@ router.get('/removelist/:id', ensureAuthenticated, (req, res, next) => {
 
 
 /* GET reading list page */
-router.get('/readinglist', ensureAuthenticated, (req, res, next) => {
+router.get('/reading-list', ensureAuthenticated, (req, res, next) => {
   if (!req.session.list) {
     return res.render('shop/list', { books: null });
   }
@@ -380,6 +380,17 @@ router.get('/category/fiction', (req, res, next) => {
     .sort({ title: 'ascending' })
     .then(books => {
       res.render('shop/fiction', {
+        books: books
+      });
+    });
+});
+
+/* GET Children's books category page */
+router.get('/category/childrens-books', (req, res, next) => {
+  Book.find({ category: "Children's Books" })
+    .sort({ title: 'ascending' })
+    .then(books => {
+      res.render('shop/childrens', {
         books: books
       });
     });
