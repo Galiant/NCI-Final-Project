@@ -13,6 +13,9 @@ const Cart = require('../models/cart');
 /* Load wishlist model */
 const Wishlist = require('../models/wishlist');
 
+/* Load list model */
+const List = require('../models/list');
+
 /* Load order model */
 const Order = require('../models/order');
 
@@ -267,6 +270,42 @@ router.get('/wishlist', ensureAuthenticated, (req, res, next) => {
   res.render('shop/wishlist', { books: wishlist.generateArray() });
 });
 
+/* Add to reading list based on button press */
+router.get('/add-to-list/:id', ensureAuthenticated, (req, res, next) => {
+  const bookId = req.params.id;
+  let list = new List(req.session.list ? req.session.list : {});
+
+  Book.findById(bookId, (err, book) => {
+    if (err) {
+      return res.redirect('/all');
+    }
+    list.add(book, book.id);
+    req.session.list = list;
+    console.log(req.session.list);
+    res.redirect('/all');
+  });
+});
+
+/* Remove product from reading list*/
+router.get('/removelist/:id', ensureAuthenticated, (req, res, next) => {
+  const bookId = req.params.id;
+  let list = new List(req.session.list ? req.session.list : {});
+
+  list.removeItem(bookId);
+  req.session.list = list;
+  res.redirect('/list');
+});
+
+
+/* GET reading list page */
+router.get('/readinglist', ensureAuthenticated, (req, res, next) => {
+  if (!req.session.list) {
+    return res.render('shop/list', { books: null });
+  }
+  const list = new List(req.session.list);
+  res.render('shop/list', { books: list.generateArray() });
+});
+
 /* GET checkout page */
 router.get('/checkout', ensureAuthenticated, (req, res, next) => {
   if (!req.session.cart) {
@@ -334,5 +373,7 @@ router.post('/review/:id', (req, res, next) => {
         });
     });
 });
+
+
 
 module.exports = router;
