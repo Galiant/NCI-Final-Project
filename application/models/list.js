@@ -1,8 +1,8 @@
-module.exports = function List(oldList) { // pass old cart items
+module.exports = function List(oldList) { // pass old reading list items
   // fetch old data
   this.items = oldList.items || {};
 
-  // add item to wishlist
+  // add item to reading list
   this.add = (item, id) => {
     let storedItem = this.items[id];
     if (!storedItem) {
@@ -11,12 +11,12 @@ module.exports = function List(oldList) { // pass old cart items
     storedItem.price = storedItem.item.price;
   };
 
-  // remove item from wishlist
+  // remove item from reading list
   this.removeItem = (id) => {
     delete this.items[id];
   };
 
-  // display wishlist item like array
+  // display reading list item like array
   this.generateArray = () => {
     let arr = [];
     for (let id in this.items) {
