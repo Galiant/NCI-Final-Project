@@ -293,7 +293,7 @@ router.get('/removelist/:id', ensureAuthenticated, (req, res, next) => {
 
   list.removeItem(bookId);
   req.session.list = list;
-  res.redirect('/readinglist');
+  res.redirect('/reading-list');
 });
 
 
