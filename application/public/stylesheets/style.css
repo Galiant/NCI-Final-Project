@@ -6,7 +6,28 @@ body {
   background-image: url("/images/headerImage.jpg");
   background-size: cover;
   background-position: center;
-  color: white; }
+  color: white;
+  height: 300px;
+  border-radius: 0 0rem 0.2rem 0.2rem;
+  text-align: center; }
+  .jumbotron h2 {
+    font-size: 3rem;
+    text-shadow: -1px -1px 1px #111, 2px 2px 1px #363636; }
+  .jumbotron p {
+    font-size: 1.5rem;
+    text-shadow: -1px -1px 1px #111, 2px 2px 1px #363636; }
+
+.index-title {
+  text-align: center;
+  background-color: #ffc107;
+  color: #f6f6f6;
+  letter-spacing: 0.1rem;
+  padding: 0.5rem;
+  margin: 3rem 0 0 0;
+  border-radius: 0.2rem; }
+
+.index-releases {
+  margin-bottom: 3rem; }
 
 .card {
   margin-bottom: 1.5rem !important; }
@@ -78,7 +99,7 @@ body {
             font-size: 20px;
             border: 0;
             outline: 0;
-            background-color: #F6F6F6; }
+            background-color: #f6f6f6; }
           .cart .items .product .info .quantity input.qty {
             position: relative;
             border: 0;
@@ -240,7 +261,7 @@ body {
     text-align: center; }
     .manage-page .block-heading h2 {
       margin-bottom: 1.2rem;
-      color: #3b99e0; }
+      color: #ffc107; }
 
 /* Reviews */
 .reviews {
