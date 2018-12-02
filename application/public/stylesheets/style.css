@@ -1,6 +1,11 @@
 /* Global */
+html {
+  position: relative;
+  min-height: 100%; }
+
 body {
-  background: #f6f6f6; }
+  background: #f6f6f6;
+  margin: 0 0 120px; }
 
 .jumbotron {
   background-image: url("/images/headerImage.jpg");
@@ -32,7 +37,14 @@ footer {
   color: #999;
   text-align: center;
   background-color: white;
-  border-top: .05rem solid #e5e5e5; }
+  border-top: .05rem solid #e5e5e5;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 150px;
+  padding-top: 3rem;
+  width: 100%;
+  overflow: hidden; }
 
 .card {
   margin-bottom: 1.5rem !important; }

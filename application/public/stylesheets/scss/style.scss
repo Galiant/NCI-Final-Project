@@ -4,8 +4,14 @@ $primary: #ffc107;
 $background: #f6f6f6;
 $dark: #343a40;
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   background: $background;
+  margin: 0 0 120px;
 }
 
 .jumbotron {
@@ -47,6 +53,13 @@ footer {
   text-align: center;
   background-color: white;
   border-top: .05rem solid #e5e5e5;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 150px;
+  padding-top: 3rem;
+  width: 100%;
+  overflow: hidden;
 }
 
 .card {
