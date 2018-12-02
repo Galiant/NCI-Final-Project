@@ -1,34 +1,27 @@
-<main class="page">
-  <section class="cart dark">
-    <div class="container">
-      <div class="block-heading">
-        <h2>Wishlist</h2>
-      </div>
-      <div class="content wishlist">
-        {{# if books}}
-        <div class="row">
-          {{#each books}}
-          <div class="col-md-3">
-            <div class="card mb-3 shadow-sm">
-              <img src="{{this.item.cover}}" class="card-img-top img-fluid" alt="Elevation" style="width: 100%; display: block;">
-              <div class="card-body">
-                <h6 class="card-text text-center"><a href="/book/{{this.item._id}}">{{ this.item.title }}</a></h6>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a href="/add-to-cart/{{this.item._id}}" class="btn btn-sm btn-success">Cart</a>
-                    <a href="/removewishlist/{{this.item._id}}" class="btn btn-sm btn-success">Remove</a>
-                  </div>
-                  <big class="text-muted">&euro; {{ this.price }}</big>
-                </div>
+<div class="py-5 bg-light">
+  <div class="container">
+    {{# if books}}
+    <div class="row">
+      {{#each books}}
+      <div class="col-md-3">
+        <div class="card mb-3 shadow-sm">
+          <img src="{{this.item.cover}}" class="card-img-top img-fluid" alt="{{ this.item.title }}">
+          <div class="card-body">
+            <h6 class="card-text text-center"><a href="/book/{{this.item._id}}">{{ this.item.title }}</a></h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="/add-to-cart/{{this.item._id}}" class="btn btn-sm btn-warning">Cart</a>
+                <a href="/removewishlist/{{this.item._id}}" class="btn btn-sm btn-danger">Remove</a>
               </div>
+              <big class="text-muted">&euro; {{ this.price }}</big>
             </div>
           </div>
-          {{/each}}
         </div>
       </div>
-      {{else}}
-      <h2 class="text-center">No books in wishlist.</h2>
-      {{/if}}
+      {{/each}}
     </div>
-  </section>
-</main>
+  </div>
+  {{else}}
+  <h2 class="text-center">No books in wishlist.</h2>
+  {{/if}}
+</div>
