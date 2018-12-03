@@ -4,6 +4,11 @@ $primary: #ffc107;
 $background: #f6f6f6;
 $dark: #343a40;
 
+$fa-facebook: #3b5998;
+$fa-twitter: #55acee;
+$fa-instagram: #3f729b;
+$fa-google-plus-square: #dd4b39;
+
 html {
   position: relative;
   min-height: 100%;
@@ -11,7 +16,7 @@ html {
 
 body {
   background: $background;
-  margin: 0 0 120px;
+  margin: 0 0 300px;
 }
 
 .jumbotron {
@@ -56,10 +61,32 @@ footer {
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 150px;
+  height: 300px;
   padding-top: 3rem;
   width: 100%;
   overflow: hidden;
+
+  .social {
+    text-align: center;
+    border-bottom: .05rem solid #e5e5e5;
+    padding-bottom: 2.5rem;
+  }
+
+  .fa-facebook {
+    color: $fa-facebook;
+  }
+
+  .fa-twitter {
+    color: $fa-twitter;
+  }
+
+  .fa-instagram {
+    color: $fa-instagram;
+  }
+
+  .fa-google-plus-square {
+    color: $fa-google-plus-square;
+  }
 }
 
 .card {

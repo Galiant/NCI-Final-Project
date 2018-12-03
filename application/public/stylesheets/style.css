@@ -5,7 +5,7 @@ html {
 
 body {
   background: #f6f6f6;
-  margin: 0 0 120px; }
+  margin: 0 0 300px; }
 
 .jumbotron {
   background-image: url("/images/headerImage.jpg");
@@ -41,10 +41,22 @@ footer {
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 150px;
+  height: 300px;
   padding-top: 3rem;
   width: 100%;
   overflow: hidden; }
+  footer .social {
+    text-align: center;
+    border-bottom: .05rem solid #e5e5e5;
+    padding-bottom: 2.5rem; }
+  footer .fa-facebook {
+    color: #3b5998; }
+  footer .fa-twitter {
+    color: #55acee; }
+  footer .fa-instagram {
+    color: #3f729b; }
+  footer .fa-google-plus-square {
+    color: #dd4b39; }
 
 .card {
   margin-bottom: 1.5rem !important; }
