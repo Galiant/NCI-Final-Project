@@ -21,7 +21,14 @@ const Order = require('../models/order');
 
 /* GET home page */
 router.get('/', (req, res, next) => {
-  res.render('shop/index', { title: 'The Book Boutique' });
+  Book.find({ category: "Bestsellers" })
+    .sort({ title: 'ascending' })
+    .then(books => {
+      res.render('shop/index', {
+        title: 'The Book Boutique',
+        books: books
+      });
+    });
 });
 
 /* GET allBooks page */
@@ -441,6 +448,21 @@ router.post('/search', (req, res, next) => {
         books: books
       });
     });
+});
+
+/* GET terms of use page*/
+router.get('/terms-of-use', (req, res, next) => {
+  res.render('shop/terms');
+});
+
+/* GET privacy policy page */
+router.get('/privacy-policy', (req, res, next) => {
+  res.render('shop/privacy');
+});
+
+/* GET contact page */
+router.get('/contact', (req, res, next) => {
+  res.render('shop/contact');
 });
 
 module.exports = router;

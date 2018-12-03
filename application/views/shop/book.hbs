@@ -46,9 +46,9 @@
 
         <hr>
 
-        <a href="/add-to-cart/{{book.id}}" class="btn btn-outline-primary"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
-        <a href="/add-to-wishlist/{{book.id}}" class="btn btn-outline-primary"> <i class="fas fa-heart"></i> Add to wishlist </a>
-        <a href="/add-to-list/{{book.id}}" class="btn btn-outline-primary"> <i class="fas fa-book"></i> Add to reading list </a>
+        <a href="/add-to-cart/{{book.id}}" class="btn btn-warning"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+        <a href="/add-to-wishlist/{{book.id}}" class="btn btn-warning"> <i class="fas fa-heart"></i> Add to wishlist </a>
+        <a href="/add-to-list/{{book.id}}" class="btn btn-warning"> <i class="fas fa-book"></i> Add to reading list </a>
       </article>
     </aside>
   </div>
@@ -61,7 +61,7 @@
           <label for="review"><h4>Add Review</h4></label>
           <textarea name="reviewBody" class="form-control" rows="5" id="review"></textarea>
         </div>
-        <input type="submit" value="Submit" class="btn btn-outline-primary"></input>
+        <input type="submit" value="Submit" class="btn btn-warning"></input>
       </form>
       {{else}}
       <p>Please <a href="/user/login">login</a> to leave a review.</p>
