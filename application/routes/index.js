@@ -450,4 +450,9 @@ router.post('/search', (req, res, next) => {
     });
 });
 
+/* GET ters of use */
+router.get('/terms-of-use', (req, res, next) => {
+  res.render('shop/terms');
+});
+
 module.exports = router;
