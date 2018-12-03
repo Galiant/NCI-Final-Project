@@ -455,9 +455,14 @@ router.get('/terms-of-use', (req, res, next) => {
   res.render('shop/terms');
 });
 
-/* GET privacy policy */
+/* GET privacy policy page */
 router.get('/privacy-policy', (req, res, next) => {
   res.render('shop/privacy');
+});
+
+/* GET contact page */
+router.get('/contact', (req, res, next) => {
+  res.render('shop/contact');
 });
 
 module.exports = router;
