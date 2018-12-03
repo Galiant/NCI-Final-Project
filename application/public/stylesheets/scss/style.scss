@@ -70,22 +70,22 @@ footer {
     text-align: center;
     border-bottom: .05rem solid #e5e5e5;
     padding-bottom: 2.5rem;
-  }
 
-  .fa-facebook {
-    color: $fa-facebook;
-  }
+    .fa-facebook {
+      color: $fa-facebook;
+    }
 
-  .fa-twitter {
-    color: $fa-twitter;
-  }
+    .fa-twitter {
+      color: $fa-twitter;
+    }
 
-  .fa-instagram {
-    color: $fa-instagram;
-  }
+    .fa-instagram {
+      color: $fa-instagram;
+    }
 
-  .fa-google-plus-square {
-    color: $fa-google-plus-square;
+    .fa-google-plus-square {
+      color: $fa-google-plus-square;
+    }
   }
 }
 
@@ -101,6 +101,12 @@ footer {
   h5 {
     padding-bottom: 1rem;
   }
+}
+
+.logo {
+  width: 200px;
+  margin: auto;
+  margin: 2rem auto;
 }
 
 .login-question {

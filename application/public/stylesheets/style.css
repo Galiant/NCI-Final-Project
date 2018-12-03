@@ -49,14 +49,14 @@ footer {
     text-align: center;
     border-bottom: .05rem solid #e5e5e5;
     padding-bottom: 2.5rem; }
-  footer .fa-facebook {
-    color: #3b5998; }
-  footer .fa-twitter {
-    color: #55acee; }
-  footer .fa-instagram {
-    color: #3f729b; }
-  footer .fa-google-plus-square {
-    color: #dd4b39; }
+    footer .social .fa-facebook {
+      color: #3b5998; }
+    footer .social .fa-twitter {
+      color: #55acee; }
+    footer .social .fa-instagram {
+      color: #3f729b; }
+    footer .social .fa-google-plus-square {
+      color: #dd4b39; }
 
 .card {
   margin-bottom: 1.5rem !important; }
@@ -68,6 +68,11 @@ footer {
     padding-top: 20px; }
   .card h5 {
     padding-bottom: 1rem; }
+
+.logo {
+  width: 200px;
+  margin: auto;
+  margin: 2rem auto; }
 
 .login-question {
   padding-top: 1.5rem; }
