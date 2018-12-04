@@ -49,7 +49,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           {{#if login}}
-          <a class="dropdown-item" href="/user/profile">User Profile</a>
+          <a class="dropdown-item" href="/user/profile">My Orders</a>
           <a class="dropdown-item" href="/user/logout">Logout</a> {{else}}
           <a class="dropdown-item" href="/user/register">Register</a>
           <a class="dropdown-item" href="/user/login">Login</a> {{/if}} {{#if (eq user.email "admin@gmail.com")}}
