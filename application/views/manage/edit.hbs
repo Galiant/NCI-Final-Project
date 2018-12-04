@@ -1,9 +1,9 @@
 <div class="py-5 bg-light">
   <div class="container col-lg-8 offset-lg-2">
     {{#each errors}}
-      <div class="alert alert-danger">{{text}}</div>
+    <div class="alert alert-danger">{{text}}</div>
     {{/each}}
-    
+
     <div class="card card-body">
       <h4 class="mb-3">Edit Book</h4>
       <form action="/all/{{book.id}}?_method=PUT" method="post">
@@ -41,6 +41,10 @@
           <input type="text" class="form-control" id="bookPrice" placeholder="Price" name="price" value="{{book.price}}" required>
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
+        <p class="pt-4">
+          <a href="/manage">
+            < Return to Manage Books</a>
+        </p>
       </form>
     </div>
   </div>
