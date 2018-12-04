@@ -198,7 +198,8 @@ router.get('/add-to-cart/:id', (req, res, next) => {
     cart.add(book, book.id);
     req.session.cart = cart;
     console.log(req.session.cart);
-    res.redirect('/all');
+    req.flash('success_message', 'Book added to cart!');
+    res.redirect(`/book/${book.id}`);
   });
 });
 
@@ -229,6 +230,7 @@ router.get('/remove/:id', (req, res, next) => {
 
   cart.removeItem(bookId);
   req.session.cart = cart;
+  req.flash('success_message', 'Book removed from cart!');
   res.redirect('/cart');
 });
 
@@ -253,7 +255,8 @@ router.get('/add-to-wishlist/:id', ensureAuthenticated, (req, res, next) => {
     wishlist.add(book, book.id);
     req.session.wishlist = wishlist;
     console.log(req.session.wishlist);
-    res.redirect('/all');
+    req.flash('success_message', 'Book added to wishlist!');
+    res.redirect(`/book/${book.id}`);
   });
 });
 
@@ -264,6 +267,7 @@ router.get('/removewishlist/:id', ensureAuthenticated, (req, res, next) => {
 
   wishlist.removeItem(bookId);
   req.session.wishlist = wishlist;
+  req.flash('success_message', 'Book removed from wishlist!');
   res.redirect('/wishlist');
 });
 
@@ -289,7 +293,8 @@ router.get('/add-to-list/:id', ensureAuthenticated, (req, res, next) => {
     list.add(book, book.id);
     req.session.list = list;
     console.log(req.session.list);
-    res.redirect('/all');
+    req.flash('success_message', 'Book added to reading list!');
+    res.redirect(`/book/${book.id}`);
   });
 });
 
@@ -300,6 +305,7 @@ router.get('/removelist/:id', ensureAuthenticated, (req, res, next) => {
 
   list.removeItem(bookId);
   req.session.list = list;
+  req.flash('success_message', 'Book removed from reading list!');
   res.redirect('/reading-list');
 });
 
