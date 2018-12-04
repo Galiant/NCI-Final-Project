@@ -333,8 +333,13 @@ input:focus {
     border: 1px solid #cecece; }
 
 /* Wishlist */
-.wishlist {
-  padding: 15px; }
+.myWishlist {
+  color: #ffc107;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.2; }
 
 /* Accordion */
 /* Style the buttons that are used to open and close the accordion panel */
