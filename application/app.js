@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const express = require('express'); // call express to be used by the application
+const helmet = require('helmet'); // helps secure Express app by setting various HTTP headers. It's not a silver bullet, but it can help!
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override'); // // allow application to execute put and delete request
@@ -27,6 +28,8 @@ H.registerHelpers(Handlebars);
 require('./config/passport')(passport);
 
 const app = express();
+
+app.use(helmet());
 
 // connect to MongoDB with mongoose
 mongoose.connect('mongodb://user:AbcD1234@ds129342.mlab.com:29342/bookboutique', { useNewUrlParser: true })
