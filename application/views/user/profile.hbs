@@ -1,14 +1,13 @@
 <main class="page">
-  <section class="cart dark">
+  <section class="cart dark orders">
     <div class="container">
       <div class="block-heading">
-        <h2>User profile</h2>
+        <h2>My Orders</h2>
       </div>
       <div class="content">
         <div class="row">
           <div class="col-md-12 col-lg-12">
-            <h2 class="text-center pt-4">My Orders</h2>
-            {{# each orders}}
+            {{#if orders}} {{# each orders}}
             <div class="card text-center m-4">
               <div class="card-body">
                 <ul class="list-group">
@@ -24,7 +23,9 @@
                 <strong>Total Price: &euro; {{ this.cart.totalPrice }}</strong>
               </div>
             </div>
-            {{/each}}
+            {{/each}} {{else}}
+            <h2 class="text-center p-4">Your don't have any orders.</h2>
+            {{/if}}
           </div>
         </div>
       </div>

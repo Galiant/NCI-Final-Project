@@ -4,7 +4,7 @@
       <div class="block-heading">
         <h2>Shopping Cart</h2>
       </div>
-      <div class="content">
+      <div class="content pb-4">
         {{# if books}}
         <div class="row">
           <div class="col-md-12 col-lg-8">
@@ -22,7 +22,7 @@
                           <div class="product-name">
                             <a href="#">{{ this.item.title }}</a>
                             <div class="product-info">
-                              <div><span class="value">{{ this.item.author }}</span></div>
+                              <div><span class="author">{{ this.item.author }}</span></div>
                             </div>
                           </div>
                           <div>
@@ -49,7 +49,7 @@
             {{/each}}
           </div>
           {{else}}
-          <h2 class="text-center">No items in cart</h2>
+          <h2 class="text-center p-4">Your shopping cart is empty.</h2>
           {{/if}}
 
           <div class="col-md-12 col-lg-4">

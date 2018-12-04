@@ -1,9 +1,10 @@
-<div class="py-5 bg-light">
+<div class="py-5">
   <div class="container">
+    <h2 class="myWishlist">My Wishlist</h2>
     {{# if books}}
     <div class="row">
       {{#each books}}
-      <div class="col-md-3">
+      <div class="col-lg-3 col-md-6">
         <div class="card mb-3 shadow-sm">
           <img src="{{this.item.cover}}" class="card-img-top img-fluid" alt="{{ this.item.title }}">
           <div class="card-body">
@@ -22,6 +23,6 @@
     </div>
   </div>
   {{else}}
-  <h2 class="text-center">No books in wishlist.</h2>
+  <h2 class="text-center">Your wishlist is empty.</h2>
   {{/if}}
 </div>

@@ -32,7 +32,7 @@
         <a class="nav-link" href="/wishlist">Wishlist</a>
       </li>
     </ul>
-    <form method="post" action="/search" class="form-inline">
+    <form method="post" action="/search" class="form-inline search">
       <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search books" aria-label="Search">
       <button class="btn btn-outline-warning my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
     </form>
@@ -49,7 +49,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           {{#if login}}
-          <a class="dropdown-item" href="/user/profile">User Profile</a>
+          <a class="dropdown-item" href="/user/profile">My Orders</a>
           <a class="dropdown-item" href="/user/logout">Logout</a> {{else}}
           <a class="dropdown-item" href="/user/register">Register</a>
           <a class="dropdown-item" href="/user/login">Login</a> {{/if}} {{#if (eq user.email "admin@gmail.com")}}
