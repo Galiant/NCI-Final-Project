@@ -16,7 +16,7 @@ html {
 
 body {
   background: $background;
-  margin: 0 0 300px;
+  margin: 0 0 330px;
 }
 
 .jumbotron {
@@ -61,7 +61,7 @@ footer {
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 300px;
+  height: 330px;
   padding-top: 3rem;
   width: 100%;
   overflow: hidden;
@@ -547,5 +547,47 @@ input:focus {
     padding-top: 1.5rem;
     text-align: center;
     color: $dark;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 1199px) {
+  .cart .items .product .info .price {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .cart .items {
+    margin: auto;
+  }
+
+  .cart .items .product .info .product-name {
+    margin-top: .5rem;
+  }
+
+  .cart .items .product .info .quantity {
+    float: none;
+    margin: auto;
+  }
+
+  .cart .items .product .info .price {
+    font-size: 1.2rem;
+  }
+
+  .orders {
+    font-size: .8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .search .form-control {
+    width: 70%;
+    margin-right: .5rem;
+  }
+
+  .orders {
+    font-size: .6rem;
   }
 }
