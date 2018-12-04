@@ -1,19 +1,19 @@
-<div class="card">
+<div class="card bookId">
   <div class="row no-gutters">
-    <aside class="col-lg-3 pt-5">
+    <aside class="col-lg-3 col-md-3 pt-5">
       <article class="text-center">
-        <div class="img-big-wrap">
+        <div class="img-big-wrap ml-5">
           <a href="/{{book.cover}}" data-fancybox="">
             <img src="/{{book.cover}}" class="img-fluid" alt="{{book.title}}">
           </a>
         </div>
       </article>
     </aside>
-    <aside class="col-lg-9">
+    <aside class="col-lg-9 col-md-9">
       <article class="p-5">
         <h3 class="title mb-4">{{book.title}}</h3>
         <div class="row">
-          <div class="col-lg-8">
+          <div class="col-lg-8 col-md-8 info">
             <dl class="row">
               <dt class="col-lg-4">Author:</dt>
               <dd class="col-lg-8">{{book.author}}</dd>
@@ -28,7 +28,7 @@
               <dd class="col-lg-8">{{book.year}}</dd>
             </dl>
           </div>
-          <div class="col-lg-4">
+          <div class="col-lg-4 col-md-4">
             <div class="mb-3">
               <div class="price h2 text-warning">
                 <em><span class="currency ">&euro;</span> <span class="num">{{book.price}}</span></em>
@@ -53,8 +53,8 @@
     </aside>
   </div>
 
-  <div class="row ">
-    <div class="container col-lg-8 offset-lg-2">
+  <div class="row">
+    <div class="container col-lg-8 offset-lg-2 reviewContainer">
       <div class="card card-body">
         {{#if user}}
         <form method="post" action="/review/{{book.id}}">
