@@ -35,13 +35,13 @@ Considering the background of this project, an online bookstore system is the ma
 
 Separately from main functionality user is able to add a book to wish list. Also, the user has the possibility to leave a review for each book. Research phase shows that a lot online bookstore doesn’t have the functionality to list the book on reading list so a user can track books in own collection in that way.
 
-The developing of web application is made using Node.js, Express, MongoDB and Stripe to create a RESTful web application. Node.js run server together with Express what is Node framework and it is using JavaScript programming language. For creating an application skeleton, Express application generator is used. The server storing data in the MongoDB database and it is hosted at mlab.com. Mongoose is the ODM (Object Document Mapper) which is used to communicate with MongoDB database.
+The developing of web application is made using Node.js, Express, MongoDB and Stripe to create a RESTful web application. **Node.js** run server together with Express what is Node framework and it is using **JavaScript** programming language. For creating an application skeleton, **Express** application generator is used. The server storing data in the **MongoDB** database and it is hosted at mlab.com. Mongoose is the ODM (Object Document Mapper) which is used to communicate with MongoDB database.
 
-To dynamically generate an HTML page, it is used Handlebars logic-less templating engine. Handlebars weren’t the first choice but after researching what is in trend (which you can see in the picture below) the application using handlebars instead of the pug(jade). The web application is designed to be fully responsive using Bootstrap (version 4) framework which is based on flexbox layout.
+To dynamically generate an **HTML** page, it is used **Handlebars** logic-less templating engine. Handlebars weren’t the first choice but after researching what is in trend the application using handlebars instead of the pug(jade). The web application is designed to be fully responsive using **Bootstrap (version 4)** framework which is based on flexbox layout.
 
-Sensible data are encrypted with bcrypt and for user authentication is used passport.js local strategy. For validation and charging credit cards, and available payment process it is implemented Stripe.
+Sensible data are encrypted with bcrypt and for user authentication is used passport.js local strategy. For validation and charging credit cards, and available payment process it is implemented **Stripe**.
 
-The coding part of the application is done by using Cloud9 IDE. Cloud9 IDE is an online integrated development environment. During the development phase, the code is pushed to GitHub using git version control to prevent loss of data, to have time track about the project and to easy manipulate with the project, especially during the testing phase.
+The coding part of the application is done by using Cloud9 IDE. Cloud9 IDE is an online integrated development environment. During the development phase, the code is pushed to **GitHub** using git version control to prevent loss of data, to have time track about the project and to easy manipulate with the project, especially during the testing phase.
 
 ### Dependencies
 
