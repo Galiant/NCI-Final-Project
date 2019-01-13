@@ -2,6 +2,8 @@
 
 Final Project for Higher Diploma in Science in Web Technologies on NCI.
 
+Live at: https://the-book-boutique.herokuapp.com/
+
 ## Project overview
 
 An online bookstore system is the main function of the web application where the user can check the book details, can register/login to buy the book, can add a book to wishlist or can add a book on the reading list.
