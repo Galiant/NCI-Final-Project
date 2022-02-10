@@ -32,7 +32,7 @@
     "stripe": "^6.15.0"
   },
   "devDependencies": {
-    "node-sass": "^4.9.4",
+    "node-sass": "^7.0.0",
     "nodemon": "^1.18.5"
   }
 }
